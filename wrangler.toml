@@ -1,0 +1,9 @@
+name = "kes_im"
+type = "webpack"
+account_id = "f6eb193c5ada002251ec96253583e74d"
+workers_dev = true
+route = ""
+zone_id = ""
+
+[site]
+bucket = "./public"
