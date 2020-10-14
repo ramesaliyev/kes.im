@@ -181,6 +181,7 @@ input::placeholder {
 
 .results-wrapper {
   width: 100%;
+  margin-bottom: 40px;
 }
 
 .results-list {
@@ -264,12 +265,10 @@ input::placeholder {
   }
 
   .result-item {
-    padding: 0 20px;
+    height: 180px;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 25px 10px;
     background-image: none;
-  }
-
-  .original-url,
-  .copy-button {
-    padding: 0 10px;
   }
 }
