@@ -1,0 +1,106 @@
+import {toBase62, alphabet} from './base62';
+const {pow, random, floor} = Math;
+
+const extendedAlphabet = [...alphabet, '\\-', '\\_'].join('');
+const slugRegex = new RegExp(`(?!.*(-|_)$)(?!^(-|_).*)^[${extendedAlphabet}]{3,}$`, 'i');
+const URLRegex = /^(https?:\/\/[^\s\.]+\.[^\s]{2,})/i;
+
+const ErrorCodes = {
+  BAD_REQ: {code: 'BAD_REQ', message: 'Bad Request.'},
+  BAD_URL: {code: 'BAD_URL', message: 'Provided URL is not a valid one.'},
+  BAD_SLUG: {code: 'BAD_SLUG', message: 'Slug is; either too short, contains non-allowed characters or starts/ends with one of _,-.'},
+  SLUG_NA: {code: 'SLUG_NA', message: 'Slug already in use.'},
+  NO_RECURSIVE: {code: 'NO_RECURSIVE', message: 'No recursive shortening.'}
+};
+
+export default event => {
+  return event.respondWith(api(event));
+};
+
+function api(event) {
+  const {method} = event.request;
+  const {pathname} = new URL(event.request.url);
+
+  if (pathname === '/shorten' && method === 'POST') {
+    return shortenLink(event);
+  }
+
+  if (pathname === '/reveal' && method === 'POST') {
+    return getOriginalLink(event);
+  }
+
+  return respond({hello: `Whatcha doin'?`});
+}
+
+async function shortenLink(event) {
+  let body;
+  try {
+    body = await event.request.json();
+  } catch (e) {
+    return respond(ErrorCodes.BAD_REQ, 400);
+  }
+
+  const {url, slug} = body;
+
+  // Url has to be valid url.
+  if (!URLRegex.test(url)) {
+    return respond(ErrorCodes.BAD_URL, 400);
+  }
+
+  // Extra security.
+  try {
+    const parsedURL = new URL(url);
+
+    // No recursive business.
+    if (parsedURL.hostname.endsWith('kes.im')) {
+      return respond(ErrorCodes.NO_RECURSIVE, 400);
+    }
+  } catch (e) {
+    return respond(ErrorCodes.BAD_URL, 400);
+  }
+
+  // Slug has to be in base62 + _ + -, if provided.
+  // Slug cannot start or end with -, _
+  if (slug && !slugRegex.test(slug)) {
+    return respond(ErrorCodes.BAD_SLUG, 400);
+  }
+
+  // Generate short link if slug not provided.
+  const shortLink = slug || toBase62(floor(random() * pow(62, 5)));
+
+  // Is short link exist?
+  const isShortLinkInUse = await kesim_data.get(shortLink);
+
+  if (isShortLinkInUse) {
+    if (slug) {
+      return respond(ErrorCodes.SLUG_NA, 400);
+    }
+
+    // Try again.
+    return shortenLink(event);
+  }
+
+  // Everyting is ok.
+  await kesim_data.put(shortLink, url);
+
+  return respond({shortLink});
+}
+
+async function getOriginalLink(event) {
+  let body;
+  try {
+    body = await event.request.json();
+  } catch (e) {
+    return respond(ErrorCodes.BAD_REQ, 400);
+  }
+
+  const {slug} = body;
+
+  return respond({
+    url: await kesim_data.get(slug),
+  });
+}
+
+function respond(data = {}, status = 200) {
+  return new Response(JSON.stringify(data), {status});
+}
