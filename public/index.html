@@ -25,23 +25,27 @@
             <main class="root">
                 <img class="logo" src="/img/logo_en.svg" />
                 <div class="link-input-wrapper">
-                    <input placeholder="Shorten your link" />
-                    <div class="cut-button">Cut</div>
+                    <input id="urlInput" placeholder="Shorten your link" />
+                    <button id="cutButton" class="cut-button loading">
+                        Cut
+                        <div class="loader"></div>
+                    </button>
                 </div>
                 <div class="custom-tag-wrapper">
                     <strong>kes.im/</strong>
-                    <input placeholder="your very special keyword, only a-z, A-Z, 0-9, and - or _" />
+                    <input id="slugInput" placeholder="your very special keyword, only a-z, A-Z, 0-9, and - or _ (can't start or end with _ or -)" />
                 </div>
                 <div class="results-wrapper">
-                    <ul class="results-list">
-                        <li class="result-item">
-                            <a target="_blank" rel="nofollow" href="http://kes.im/51e">http://kes.im/51e</a>
-                            <div class="original-url">www.hellocihan.com</div>
-                            <div class="copy-button">Copy URL</div>
-                        </li>
-                    </ul>
+                    <ul class="results-list" id="results"></ul>
+                </div>
+                <div class="about">
+                    kes.im, no-log url shortener<br>
+                    developed by <a target="_blank" href="https://rames.dev">rames</a>, designed by <a target="_blank" href="http://www.hellocihan.com/">cihan</a><br>
+                    works on top of <a rel="nofollow" target="_blank" href="https://workers.cloudflare.com/" >cloudflare workers</a><br>
+                    opensourced on <a rel="nofollow" target="_blank" href="https://github.com/ramesaliyev/kes.im">github</a>
                 </div>
             </main>
         </div>
+        <script type="text/javascript" src="/js/main.js"></script>
     </body>
 </html>

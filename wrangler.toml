@@ -10,7 +10,7 @@ routes = [
 
 [[kv_namespaces]]
 binding = "kesim_data"
-id = "767fc2258dd94aa09ddcacdac19b1e23"
+id = "b5b51fce86a74b4eba5a11e7d9e06d16"
 preview_id="b5b51fce86a74b4eba5a11e7d9e06d16"
 
 [site]

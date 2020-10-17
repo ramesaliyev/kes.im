@@ -1,8 +1,6 @@
 import {getAssetFromKV} from '@cloudflare/kv-asset-handler';
 
 export default event => {
-  console.log(event.request.headers.get('Accept-Language'));
-
   try {
     event.respondWith(handleFetch(event));
   } catch (e) {
