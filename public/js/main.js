@@ -72,6 +72,9 @@ async function cut() {
     </li>
   `);
 
+  urlInput.value = '';
+  slugInput.value = '';
+
   inProgress(false);
 }
 

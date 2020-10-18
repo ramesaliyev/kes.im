@@ -92,16 +92,16 @@ input::placeholder {
 .cut-button {
   position: relative;
   display: flex;
+  align-items: center;
   width: 140px;
   height: 100%;
   font-weight: 700;
   font-size: 2rem;
-  align-items: center;
-  padding-left: 20px;
+  padding-left: 30px;
   border-left: 1px dashed #D8D8D8;
   background-image: url(/img/cut_gray.svg);
   background-repeat: no-repeat;
-  background-position: 93px center;
+  background-position: 86px center;
   background-size: 26px;
   cursor: pointer;
   color: #4779FF;
@@ -144,6 +144,8 @@ input::placeholder {
 
 .cut-button .loader {
   display: none;
+  font-size: 8px;
+  top: -15px;
 }
 
 .link-input-wrapper:hover,
@@ -258,14 +260,16 @@ input::placeholder {
 
 body.in-progress .cut-button {
   padding: 0;
-  font-size: 0px;
+  justify-content: center;
   background-image: none !important;
+}
+
+body.in-progress .cut-button span {
+  display: none;
 }
 
 body.in-progress .cut-button .loader {
   display: block;
-  font-size: 7px;
-  margin-top: 52px;
 }
 
 .about {
@@ -304,13 +308,17 @@ body.in-progress .cut-button .loader {
     border: none;
     border-top: 1px dashed #D8D8D8;
     justify-content: center;
-    background-position: calc(50% - -55px);
+    background-position: calc(50% - -35px);
     padding-left: 0;
   }
 
   .cut-button:before,
   .cut-button:after {
     display: none;
+  }
+
+  .cut-button span {
+    margin-left: -20px;
   }
 
   .result-item {
@@ -320,6 +328,16 @@ body.in-progress .cut-button .loader {
     padding: 25px 10px;
     background-image: none;
     margin-bottom: 10px;
+  }
+}
+
+@media(max-width: 400px) {
+  main {
+    padding-top: 30px;
+  }
+
+  .logo {
+    margin-bottom: 30px;
   }
 }
 
@@ -338,7 +356,6 @@ body.in-progress .cut-button .loader {
 .loader {
   color: #4779FF;
   font-size: 10px;
-  margin: 80px auto;
   position: relative;
   text-indent: -9999em;
   -webkit-transform: translateZ(0);

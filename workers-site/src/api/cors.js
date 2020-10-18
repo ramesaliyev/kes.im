@@ -3,7 +3,8 @@ const CORS_DEFAULT_HEADERS = 'Content-Type';
 
 const allowedOrigins = [
   'https://kes.im',
-  'http://localhost:8080'
+  'http://localhost:8080',
+  'https://beta.kes.im',
 ];
 
 export function getCORSHeaders(event) {
