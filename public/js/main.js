@@ -68,7 +68,7 @@ async function cut() {
         https://kes.im/${cutString(data.shortLink, 40)}
       </a>
       <div class="original-url">${cutString(url, 40)}</div>
-      <button class="copy-button">Copy URL</button>
+      <button class="copy-button" onclick="copy(event, '${data.shortLink}')">Copy URL</button>
     </li>
   `);
 
@@ -82,11 +82,9 @@ function showError(error) {
 }
 
 function resetErrors() {
-  const elements = resultList.getElementsByClassName("result-error");
-
-  while (elements[0]) {
-    resultList.removeChild(elements[0]);
-  }
+  resultList.querySelectorAll('.result-error').forEach(element => {
+    resultList.removeChild(element);
+  });
 }
 
 function isURLHasError(url) {
@@ -118,6 +116,18 @@ function cutString(string, maxLength) {
   if (string.length <= maxLength) return string;
   const maxHalfLength = (maxLength - 3) / 2;
   return `${string.substr(0, maxHalfLength)}...${string.substr(-maxHalfLength)}`;
+}
+
+function copy(event, shortLink) {
+  navigator.clipboard.writeText(`https://kes.im/${shortLink}`);
+
+  document.querySelectorAll('.copy-button').forEach(button => {
+    button.classList.remove('copied');
+    button.innerText = 'Copy';
+  });
+
+  event.target.classList.add('copied');
+  event.target.innerText = 'Copied';
 }
 
 cutButton.addEventListener('click', cut);
