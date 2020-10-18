@@ -2,13 +2,13 @@ import {getAssetFromKV} from '@cloudflare/kv-asset-handler';
 
 export default event => {
   try {
-    event.respondWith(handleFetch(event));
+    event.respondWith(handleStaticRequest(event));
   } catch (e) {
     event.respondWith(new Response('Internal Error', {status: 500}));
   }
 };
 
-async function handleFetch(event) {
+async function handleStaticRequest(event) {
   let options = {}
 
   try {
@@ -27,15 +27,19 @@ async function handleFetch(event) {
   } catch (e) {
     // if an error is thrown try to serve the asset at 404.html
     try {
-      const notFoundResponse = await getAssetFromKV(event, {
-        mapRequestToAsset: req => new Request(`${new URL(req.url).origin}/404.html`, req),
-      });
-
-      return new Response(notFoundResponse.body, {
-        ...notFoundResponse, status: 404
-      });
+      return serve404(event);
     } catch (e) {}
 
     return new Response(e.message || e.toString(), {status: 500})
   }
+}
+
+export async function serve404(event) {
+  const notFoundResponse = await getAssetFromKV(event, {
+    mapRequestToAsset: req => new Request(`${new URL(req.url).origin}/404.html`, req),
+  });
+
+  return new Response(notFoundResponse.body, {
+    ...notFoundResponse, status: 404
+  });
 }

@@ -3,7 +3,7 @@ import {toBase62, alphabet} from './base62';
 const {pow, random, floor} = Math;
 
 const extendedAlphabet = [...alphabet, '\\-', '\\_'].join('');
-const slugRegex = new RegExp(`(?!.*(-|_)$)(?!^(-|_).*)^[${extendedAlphabet}]{3,}$`, 'i');
+export const slugRegex = new RegExp(`(?!.*(-|_)$)(?!^(-|_).*)^[${extendedAlphabet}]{3,}$`, 'i');
 const URLRegex = /^(https?:\/\/[^\s\.]+\.[^\s]{2,})/i;
 
 const ErrorCodes = {
