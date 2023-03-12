@@ -1,17 +1,17 @@
 name = "kes_im"
-type = "webpack"
 workers_dev = false
 account_id = "f6eb193c5ada002251ec96253583e74d"
-zone_id = "5b5fa1156dac645ae9a36479bf982e10"
 routes = [
   "kes.im/*",
   "api.kes.im/*"
 ]
+main = "workers-site/index.js"
+compatibility_date = "2023-03-12"
 
 [[kv_namespaces]]
 binding = "kesim_data"
 id = "767fc2258dd94aa09ddcacdac19b1e23"
-preview_id=""
+preview_id="767fc2258dd94aa09ddcacdac19b1e23"
 
 [site]
 bucket = "./public"
