@@ -290,6 +290,9 @@ body.in-progress .cut-button .loader {
 
 .qr-code {
   height: 100%;
+  aspect-ratio: 1/1;
+  background-image: url(/img/qr_loading.png);
+  background-size: cover;
 }
 
 @media(max-width: 600px) {
@@ -330,7 +333,6 @@ body.in-progress .cut-button .loader {
     justify-content: space-between;
     flex-direction: column;
     padding: 25px 10px;
-    padding-bottom: 0px;
     background-image: none;
     margin-bottom: 10px;
   }
