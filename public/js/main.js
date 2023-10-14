@@ -62,13 +62,21 @@ async function cut() {
     return showError(error);
   }
 
+  const completeURL = `https://kes.im/${data.shortLink}`;
+
   resultList.insertAdjacentHTML('afterbegin', `
     <li class="result-item">
-      <a target="_blank" rel="nofollow" href="https://kes.im/${data.shortLink}">
+      <a target="_blank" rel="nofollow" href="${completeURL}">
         https://kes.im/${cutString(data.shortLink, 40)}
       </a>
       <div class="original-url">${cutString(url, 40)}</div>
       <button class="copy-button" onclick="copy(event, '${data.shortLink}')">Copy URL</button>
+      <img 
+        class="qr-code"
+        alt="QR Code"
+        loading="lazy"
+        src="https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=${completeURL}&choe=UTF-8"
+      />
     </li>
   `);
 

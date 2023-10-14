@@ -205,7 +205,7 @@ input::placeholder {
   align-items: center;
   padding: 0 20px 0 70px;
   width: 100%;
-  height: 78px;
+  height: 85px;
   border: 1px solid #ECF1FB;
   border-radius: 8px;
   background-image: url(/img/cut_gray.svg);
@@ -288,6 +288,10 @@ body.in-progress .cut-button .loader {
   color: #4779FF;
 }
 
+.qr-code {
+  height: 100%;
+}
+
 @media(max-width: 600px) {
   .link-input-wrapper {
     height: 150px;
@@ -322,12 +326,17 @@ body.in-progress .cut-button .loader {
   }
 
   .result-item {
-    height: 180px;
+    height: 300px;
     justify-content: space-between;
     flex-direction: column;
     padding: 25px 10px;
+    padding-bottom: 0px;
     background-image: none;
     margin-bottom: 10px;
+  }
+
+  .qr-code {
+    height: 50%;
   }
 
   .result-item.result-error {
