@@ -289,10 +289,11 @@ body.in-progress .cut-button .loader {
 }
 
 .qr-code {
-  height: 100%;
+  height: 80%;
   aspect-ratio: 1/1;
   background-image: url(/img/qr_loading.png);
   background-size: cover;
+  font-size: 0;
 }
 
 @media(max-width: 600px) {

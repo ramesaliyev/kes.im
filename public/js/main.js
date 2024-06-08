@@ -75,7 +75,7 @@ async function cut() {
         class="qr-code"
         alt="QR Code"
         loading="lazy"
-        src="https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=${completeURL}&choe=UTF-8"
+        src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${completeURL}"
       />
     </li>
   `);
