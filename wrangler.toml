@@ -17,3 +17,11 @@ bucket = "./public"
 
 [vars]
 CF_TURNSTILE_VERIFY_URL = "https://challenges.cloudflare.com/turnstile/v0/siteverify"
+
+[[unsafe.bindings]]
+name = "API_RATE_LIMITER"
+type = "ratelimit"
+namespace_id = "2000001"
+# Limit: the number of tokens allowed within a given period in a single Cloudflare location.
+# Period: the duration of the period, in seconds. Must be either 10 or 60.
+simple = {limit = 3, period = 10}

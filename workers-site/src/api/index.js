@@ -14,15 +14,24 @@ const ErrorCodes = {
   BAD_CAPTCHA: {code: 'BAD_CAPTCHA', message: 'Captcha/Security check is not passed.'},
   SLUG_NA: {code: 'SLUG_NA', message: 'Slug already in use.'},
   NO_RECURSIVE: {code: 'NO_RECURSIVE', message: 'No recursive shortening.'},
+  LIMIT_EXCEEDED: {code: 'LIMIT_EXCEEDED', message: 'Maximum request limit in a minute is exceeded.'},
 };
 
 export default event => {
   return event.respondWith(api(event));
 };
 
-function api(event) {
+async function api(event) {
   const {method} = event.request;
   const {pathname} = new URL(event.request.url);
+
+  // Rate limiter.
+  const user_ip = event.request.headers.get('CF-Connecting-IP');
+  const limiter_key = `${pathname}_${user_ip}`;
+  const {success:rate_success} = await API_RATE_LIMITER.limit({key: limiter_key})
+  if (!rate_success) {
+    return respond(event, ErrorCodes.LIMIT_EXCEEDED, 400);
+  }
 
   if (method === 'OPTIONS') {
     return respond(event, null);
