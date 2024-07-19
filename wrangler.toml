@@ -1,4 +1,4 @@
-name = "kes_im"
+name = "kesim"
 workers_dev = false
 account_id = "f6eb193c5ada002251ec96253583e74d"
 routes = [
@@ -11,7 +11,6 @@ compatibility_date = "2023-03-12"
 [[kv_namespaces]]
 binding = "kesim_data"
 id = "767fc2258dd94aa09ddcacdac19b1e23"
-preview_id="767fc2258dd94aa09ddcacdac19b1e23"
 
 [site]
 bucket = "./public"
