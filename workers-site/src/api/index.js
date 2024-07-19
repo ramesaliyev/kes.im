@@ -1,5 +1,6 @@
 import {getCORSHeaders} from './cors';
 import {toBase62, alphabet} from './base62';
+import {validateToken} from './security';
 const {pow, random, floor} = Math;
 
 const extendedAlphabet = [...alphabet, '\\-', '\\_'].join('');
@@ -10,8 +11,9 @@ const ErrorCodes = {
   BAD_REQ: {code: 'BAD_REQ', message: 'Bad Request.'},
   BAD_URL: {code: 'BAD_URL', message: 'Provided URL is not a valid one.'},
   BAD_SLUG: {code: 'BAD_SLUG', message: 'Slug is not in correct format.'},
+  BAD_CAPTCHA: {code: 'BAD_CAPTCHA', message: 'Captcha/Security check is not passed.'},
   SLUG_NA: {code: 'SLUG_NA', message: 'Slug already in use.'},
-  NO_RECURSIVE: {code: 'NO_RECURSIVE', message: 'No recursive shortening.'}
+  NO_RECURSIVE: {code: 'NO_RECURSIVE', message: 'No recursive shortening.'},
 };
 
 export default event => {
@@ -45,7 +47,12 @@ async function shortenLink(event) {
     return respond(event, event, ErrorCodes.BAD_REQ, 400);
   }
 
-  const {url, slug} = body;
+  const {url, slug, token} = body;
+
+  // Security check.
+  if (!await validateToken(token, event)) {
+    return respond(event, ErrorCodes.BAD_CAPTCHA, 400);
+  }
 
   // Url has to be valid url.
   if (!URLRegex.test(url)) {

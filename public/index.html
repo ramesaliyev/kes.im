@@ -19,6 +19,9 @@
         <!-- Assets -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="/css/main.css">
+    
+        <!-- Scripts -->
+        <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     </head>
     <body>
         <div class="wrapper">
@@ -34,6 +37,14 @@
                 <div class="custom-tag-wrapper">
                     <strong>kes.im/</strong>
                     <input id="slugInput" placeholder="your very special keyword, only a-z, A-Z, 0-9, and - or _ (can't start or end with _ or -)" />
+                </div>
+                <div class="captcha">
+                    <div class="cf-turnstile"
+                        data-sitekey="0x4AAAAAAAfcjB2aIe7Uas6w"
+                        data-theme="light"
+                        data-callback="turnstileOnSuccess"
+                        data-expired-callback="turnstileOnExpired"
+                    ></div>
                 </div>
                 <div class="results-wrapper">
                     <ul class="results-list" id="results"></ul>

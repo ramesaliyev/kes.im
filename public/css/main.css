@@ -177,7 +177,7 @@ input::placeholder {
   border-radius: 6px;
   background-color: #fff;
   border: 1px solid #ECF1FB;
-  margin-bottom: 55px;
+  margin-bottom: 15px;
   padding: 0 30px;
 }
 
@@ -188,6 +188,14 @@ input::placeholder {
 .custom-tag-wrapper input {
   flex: 1;
   padding-left: 1px;
+}
+
+.captcha {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  margin-bottom: 55px;
 }
 
 .results-wrapper {
@@ -327,6 +335,10 @@ body.in-progress .cut-button .loader {
 
   .cut-button span {
     margin-left: -20px;
+  }
+
+  .captcha {
+    align-items: center;
   }
 
   .result-item {

@@ -6,7 +6,8 @@ const ErrorCodes = {
   UNKNOWN: {code: 'UNKNOWN', message: 'Server in trouble, try later please.'},
   BAD_URL: {code: 'BAD_URL', message: 'Provided URL is not a valid one.'},
   BAD_SLUG: {code: 'BAD_SLUG', message: 'Slug is not in correct format.'},
-  NO_RECURSIVE: {code: 'NO_RECURSIVE', message: 'No recursive shortening.'}
+  BAD_CAPTCHA: {code: 'BAD_CAPTCHA', message: 'Captcha/Security check is not passed.'},
+  NO_RECURSIVE: {code: 'NO_RECURSIVE', message: 'No recursive shortening.'},
 };
 
 const body = document.body;
@@ -31,6 +32,12 @@ async function cut() {
 
   resetErrors();
 
+  let securityError;
+  if (securityError = hasSecurityError()) {
+    inProgress(false);
+    return showError(securityError);
+  }
+
   let urlError;
   if (urlError = isURLHasError(url)) {
     inProgress(false);
@@ -43,10 +50,12 @@ async function cut() {
     return showError(slugError);
   }
 
+  turnstileReset();
+
   const response = await fetch('https://api.kes.im/shorten', {
     method: 'POST',
     headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
-    body: JSON.stringify({url, slug}),
+    body: JSON.stringify({url, slug, token: TURNSTILE_TOKEN}),
   });
 
   const data = await response.json();
@@ -142,3 +151,37 @@ function copy(event, shortLink) {
 }
 
 cutButton.addEventListener('click', cut);
+
+/**
+ * Turnstile integration
+ */
+TURNSTILE_TOKEN = null;
+
+function turnstileOnSuccess(token) {
+  console.log('Turnstile success.', token);
+  TURNSTILE_TOKEN = token;
+}
+
+function turnstileOnExpired() {
+  console.log('Turnstile expired.');
+  TURNSTILE_TOKEN = null;
+}
+
+function turnstileReset() {
+  turnstile.reset();
+}
+
+function hasSecurityError() {
+  let hasError = true;
+
+  if (turnstile.isExpired()) {
+    turnstile.reset();
+  } else {
+    TURNSTILE_TOKEN = turnstile.getResponse();
+    hasError = false;
+  }
+
+  if (hasError) {
+    return ErrorCodes.BAD_CAPTCHA;
+  }
+}
