@@ -1,5 +1,5 @@
-const alphabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\\-\\_';
-const slugRegex = new RegExp(`(?!.*(-|_)$)(?!^(-|_).*)^[${alphabet}]{3,}$`, 'i');
+const alphabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const slugRegex = new RegExp(`(?!.*(-|_)$)(?!^(-|_).*)^[${alphabet.concat("\\-\\_")}]{3,}$`, 'i');
 const URLRegex = /^(https?:\/\/[^\s\.]+\.[^\s]{2,})/i;
 
 const ErrorCodes = {
@@ -8,6 +8,7 @@ const ErrorCodes = {
   BAD_SLUG: {code: 'BAD_SLUG', message: 'Slug is not in correct format.'},
   BAD_CAPTCHA: {code: 'BAD_CAPTCHA', message: 'Captcha/Security check is not passed.'},
   NO_RECURSIVE: {code: 'NO_RECURSIVE', message: 'No recursive shortening.'},
+  NO_INPUT: {code: 'NO_INPUT', message: 'Please enter a link.'},
 };
 
 const body = document.body;
@@ -27,10 +28,18 @@ async function cut() {
   if (inProgress()) return;
   inProgress(true);
 
-  const url = urlInput.value;
-  const slug = slugInput.value;
-
   resetErrors();
+
+  const url =  urlInput.value;
+  let urlError;
+  if (urlError = isURLInputEmpty(url)){
+    inProgress(false);
+    return showError(urlError);
+  }
+  let slug = slugInput.value;
+  if (slug.length === 0){
+    slug = generateRandomSlug();
+  }
 
   let securityError;
   if (securityError = hasSecurityError()) {
@@ -38,7 +47,6 @@ async function cut() {
     return showError(securityError);
   }
 
-  let urlError;
   if (urlError = isURLHasError(url)) {
     inProgress(false);
     return showError(urlError);
@@ -132,6 +140,12 @@ function isSlugGHasError(slug) {
   }
 }
 
+function isURLInputEmpty(url){
+  if (url.length === 0){
+    return ErrorCodes.NO_INPUT;
+  }
+}
+
 function cutString(string, maxLength) {
   if (string.length <= maxLength) return string;
   const maxHalfLength = (maxLength - 3) / 2;
@@ -184,4 +198,10 @@ function hasSecurityError() {
   if (hasError) {
     return ErrorCodes.BAD_CAPTCHA;
   }
+}
+
+function generateRandomSlug(length = 10) {
+  return Array.from({ length }, () =>
+    alphabet.charAt(Math.floor(Math.random() * alphabet.length))
+  ).join("");
 }

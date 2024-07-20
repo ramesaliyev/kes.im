@@ -297,6 +297,13 @@ body.in-progress .cut-button .loader {
   color: #4779FF;
 }
 
+.optional-text {
+  color: #ACB0B9;
+  margin-bottom: 4px;
+  align-self: flex-start;
+  margin-left: 6px;
+}
+
 .donation {
   display: flex;
   justify-content: center;
