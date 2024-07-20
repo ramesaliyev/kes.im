@@ -1,3 +1,5 @@
+import { dictionary } from "./dictionary";
+
 const alphabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const slugRegex = new RegExp(`(?!.*(-|_)$)(?!^(-|_).*)^[${alphabet.concat("\\-\\_")}]{3,}$`, 'i');
 const URLRegex = /^(https?:\/\/[^\s\.]+\.[^\s]{2,})/i;
@@ -200,8 +202,11 @@ function hasSecurityError() {
   }
 }
 
-function generateRandomSlug(length = 10) {
-  return Array.from({ length }, () =>
-    alphabet.charAt(Math.floor(Math.random() * alphabet.length))
-  ).join("");
+function generateRandomSlug(length = 3) {
+  const selectedWords = [];
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * dictionary.length);
+    selectedWords.push(dictionary.splice(randomIndex, 1)[0]);
+  }
+  return selectedWords.join("-");
 }
