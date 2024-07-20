@@ -86,25 +86,37 @@ async function shortenLink(event) {
     return respond(event, ErrorCodes.BAD_SLUG, 400);
   }
 
-  // Generate short link if slug not provided.
-  const shortLink = slug || toBase62(floor(random() * pow(62, 5)));
-
-  // Is short link exist?
-  const isShortLinkInUse = await kesim_data.get(shortLink);
-
-  if (isShortLinkInUse) {
-    if (slug) {
+  // Check if slug is in use.
+  if (slug) {
+    const isShortLinkInUse = await kesim_data.get(slug);
+    if (isShortLinkInUse) {
       return respond(event, ErrorCodes.SLUG_NA, 400);
     }
-
-    // Try again.
-    return shortenLink(event);
   }
+
+  // Generate short link if slug not provided.
+  const shortLink = slug || await generateAvailableRandomSlug();
 
   // Everyting is ok.
   await kesim_data.put(shortLink, url);
 
   return respond(event, {shortLink});
+}
+
+async function generateAvailableRandomSlug() {
+  // Generate random slug.
+  const shortLink = toBase62(floor(random() * pow(62, 5)));
+
+  // Does slug exist?
+  const isShortLinkInUse = await kesim_data.get(shortLink);
+
+  // Try again.
+  if (isShortLinkInUse) {
+    return generateAvailableRandomSlug();
+  }
+
+  // Slug is available.
+  return shortLink;
 }
 
 async function getOriginalLink(event) {
