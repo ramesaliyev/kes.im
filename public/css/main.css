@@ -296,6 +296,13 @@ body.in-progress .cut-button .loader {
   color: #4779FF;
 }
 
+.donation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
 .qr-code {
   height: 80%;
   aspect-ratio: 1/1;
@@ -339,6 +346,10 @@ body.in-progress .cut-button .loader {
 
   .captcha {
     align-items: center;
+  }
+
+  .about {
+    margin-bottom: 15px;
   }
 
   .result-item {
