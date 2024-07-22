@@ -1,4 +1,4 @@
-name: Deploy
+name: Deploy Prod on Push/Master
 
 on:
   push:
@@ -6,6 +6,13 @@ on:
       - master
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Test
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test
+        run: echo "*** test ***"
   deploy:
     runs-on: ubuntu-latest
     name: Deploy
