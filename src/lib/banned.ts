@@ -6,7 +6,7 @@ const HOSTNAMES = [
   "is.gd",
 ];
 
-const HOSTNAME_KEYWORDS = [
+const URL_KEYWORDS = [
   "helfingt",
   "kntldwammkbsa",
   "francisco36919",
@@ -45,6 +45,7 @@ const HOSTNAME_KEYWORDS = [
   "kominfo",
   "angeelina",
   "l.wl.co",
+  "xdxdxfdxfgdfgdasdadwa",
 ];
 
 const SLUGS = [
@@ -327,6 +328,6 @@ const SLUGS = [
 
 export default {
   HOSTNAMES,
-  HOSTNAME_KEYWORDS,
+  URL_KEYWORDS,
   SLUGS,
 };

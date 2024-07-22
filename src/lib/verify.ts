@@ -51,16 +51,14 @@ export function isURLValidAndAllowed(url:string, minLen:number, maxLen:number): 
     return false;
   }
 
-  // Get hostname.
-  const hostname = parsedURL.getHostname().toLowerCase();
-
   // Check if hostname is banned.
+  const hostname = parsedURL.getHostname().toLowerCase();
   if (banned.HOSTNAMES.includes(hostname)) {
     return false;
   }
 
-  // Check if hostname includes banned keywords.
-  if (banned.HOSTNAME_KEYWORDS.some(suffix => hostname.indexOf(suffix) !== -1)) {
+  // Check if url includes banned keywords.
+  if (banned.URL_KEYWORDS.some(suffix => url.indexOf(suffix) !== -1)) {
     return false;
   }
 
