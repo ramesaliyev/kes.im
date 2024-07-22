@@ -28,22 +28,22 @@
       <main class="root">
         <img class="logo" src="/img/logo_en.svg" />
         <div class="link-input-wrapper">
-          <input type="url" id="urlInput" placeholder="Shorten your link" />
-          <button id="cutButton" class="cut-button loading">
+          <input type="url" id="urlInput" placeholder="Shorten your link" tabindex="1" />
+          <button id="cutButton" class="cut-button loading" tabindex="3">
             <span>Cut</span>
             <div class="loader"></div>
           </button>
         </div>
         <div class="custom-tag-wrapper">
           <strong>kes.im/</strong>
-          <input id="slugInput" placeholder="(optional) your very special keyword, only a-z, A-Z, 0-9, and - or _ (can't start or end with _ or -), min 3 max 64 characters" />
+          <input id="slugInput" tabindex="2" />
         </div>
         <div class="captcha">
           <div class="cf-turnstile"
             data-sitekey="0x4AAAAAAAfcjB2aIe7Uas6w"
             data-theme="light"
-            data-callback="turnstileOnSuccess"
-            data-expired-callback="turnstileOnExpired"
+            data-callback="onTokenSuccess"
+            data-expired-callback="onTokenExpired"
           ></div>
         </div>
         <div class="results-wrapper">
@@ -60,6 +60,6 @@
         </div>
       </main>
     </div>
-    <script type="text/javascript" src="/js/main.js"></script> 
+    <script type="module" src="/js/app.js"></script> 
   </body>
 </html>

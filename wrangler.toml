@@ -14,7 +14,6 @@ routes = [
   "api.kes.im/*",
 ]
 
-
 [build]
 command = "npm run prepare"
 cwd = "."
@@ -47,6 +46,7 @@ simple = {limit = 3, period = 10}
 DEBUG_MODE = true
 CFG_SITE_ORIGIN = "https://kes.im"
 CFG_SITE_HOSTNAME = "kes.im"
+CFG_SITE_API_ORIGIN = "https://api.kes.im"
 CFG_SITE_API_HOSTNAME = "api.kes.im"
 CFG_RANDOM_SLUG_LENGTH = 5
 CFG_MIN_SLUG_LENGTH = 3

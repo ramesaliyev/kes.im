@@ -67,10 +67,15 @@ a:hover {
 
 input {
   background: transparent;
+  caret-color: #4779FF; 
 }
 
 input::placeholder {
   color: #ACB0B9;
+}
+
+input:focus::placeholder {
+  color: rgba(71, 121, 255, 0.35);
 }
 
 .link-input-wrapper {
@@ -108,7 +113,7 @@ input::placeholder {
   user-select: none;
 }
 
-.cut-button:hover {
+.cut-button:focus, .cut-button:hover {
   background-image: url(/img/cut_blue.svg);
 }
 
