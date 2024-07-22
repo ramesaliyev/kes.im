@@ -54,7 +54,7 @@ export default class APIRoute extends AppRoute {
     const {hostname, success} = await result.json() as TurnstileChallengeResponse;
 
     // Check the response.
-    if (hostname !== env.CFG_SITE_HTTP_HOSTNAME) {
+    if (hostname !== env.CFG_SITE_HOSTNAME) {
       return false;
     }
 

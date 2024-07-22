@@ -4,9 +4,9 @@
 interface Env {
 	KV_LINKS: KVNamespace;
 	DEBUG_MODE: true;
-	CFG_SITE_HTTP_ORIGIN: "https://kes.im";
-	CFG_SITE_HTTP_HOSTNAME: "kes.im";
-	CFG_SITE_HTTP_API_HOSTNAME: "api.kes.im";
+	CFG_SITE_ORIGIN: "https://kes.im";
+	CFG_SITE_HOSTNAME: "kes.im";
+	CFG_SITE_API_HOSTNAME: "api.kes.im";
 	CFG_RANDOM_SLUG_LENGTH: 5;
 	CFG_MIN_SLUG_LENGTH: 3;
 	CFG_MAX_SLUG_LENGTH: 64;

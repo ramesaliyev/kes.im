@@ -38,9 +38,9 @@ simple = {limit = 3, period = 10}
 
 [vars]
 DEBUG_MODE = true
-CFG_SITE_HTTP_ORIGIN = "https://kes.im"
-CFG_SITE_HTTP_HOSTNAME = "kes.im"
-CFG_SITE_HTTP_API_HOSTNAME = "api.kes.im"
+CFG_SITE_ORIGIN = "https://kes.im"
+CFG_SITE_HOSTNAME = "kes.im"
+CFG_SITE_API_HOSTNAME = "api.kes.im"
 CFG_RANDOM_SLUG_LENGTH = 5
 CFG_MIN_SLUG_LENGTH = 3
 CFG_MAX_SLUG_LENGTH = 64
@@ -50,5 +50,5 @@ CFG_DEFAULT_CACHE_AGE = 3600 # an hour
 CFG_STATIC_CACHE_AGE = 86400 # a day
 CFG_REDIRECT_CACHE_AGE = 31536000 # a year
 CF_STATIC_ASSET_TTL = 172800 # 2 days
+CF_KV_CACHE_TTL = 86400 # a day
 CF_TURNSTILE_VERIFY_URL = "https://challenges.cloudflare.com/turnstile/v0/siteverify"
-CF_KV_CACHE_TTL = 864000

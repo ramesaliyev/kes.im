@@ -30,7 +30,7 @@ export default class AppResponse {
     const requestHeaders = req.getHeader('Access-Control-Request-Headers');
 
     const allowedOrigins = [
-      env.CFG_SITE_HTTP_ORIGIN as string,
+      env.CFG_SITE_ORIGIN as string,
     ];
 
     const allowedOrigin:string = allowedOrigins.includes(requestOrigin) ?

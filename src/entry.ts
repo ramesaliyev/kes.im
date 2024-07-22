@@ -9,7 +9,7 @@ export default {
     const app = new App(eventReq, env, ctx);
 
     // Define routes. Order matters.
-    app.router.onHostname(app.env.CFG_SITE_HTTP_API_HOSTNAME, APIRoute);
+    app.router.onHostname(app.env.CFG_SITE_API_HOSTNAME, APIRoute);
     app.router.onConditionMet(app.req.hasSlug(), RedirectRoute);
     app.router.onDefault(StaticRoute);
 
