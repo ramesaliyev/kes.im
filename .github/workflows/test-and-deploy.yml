@@ -1,4 +1,4 @@
-name: Deploy Prod on Push/Master
+name: Test & Deploy Prod on Push/Master
 
 on:
   push:
@@ -8,12 +8,20 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    name: Test
+    strategy:
+      matrix:
+        node-version: [20.x, 22.x]
     steps:
-      - uses: actions/checkout@v4
-      - name: Test
-        run: npm test
+    - uses: actions/checkout@v4
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - run: npm ci
+    - run: npm test
   deploy:
+    needs: test
     runs-on: ubuntu-latest
     name: Deploy
     steps:
