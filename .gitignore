@@ -1,4 +1,2 @@
-.DS_Store
-dist
-.wrangler
-node_modules
+.wrangler/
+node_modules/

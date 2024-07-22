@@ -1,65 +1,65 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <!-- Meta -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Shorten your links | kes.im</title>
-        <meta name="description" content="Kes.im, no-log url shortener.">
-        <meta name="keywords" content="kes.im, kesim, link shortener, no-log, zero-log">
-        <meta name="author" content="Rameş Aliyev">
-        <link rel="icon" type="image/png" href="/favicon.png" />
+  <head>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Shorten your links | kes.im</title>
+    <meta name="description" content="Kes.im, no-log url shortener.">
+    <meta name="keywords" content="kes.im, kesim, link shortener, no-log, zero-log">
+    <meta name="author" content="Rameş Aliyev">
+    <link rel="icon" type="image/png" href="/favicon.png" />
 
-        <!-- OG -->
-        <meta property="og:title" content="Shorten your links | kes.im" />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://kes.im" />
-        <meta property="og:image" content="/img/emblem_square.png" />
+    <!-- OG -->
+    <meta property="og:title" content="Shorten your links | kes.im" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://kes.im" />
+    <meta property="og:image" content="/img/emblem_square.png" />
 
-        <!-- Assets -->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="/css/main.css">
-    
-        <!-- Scripts -->
-        <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-    </head>
-    <body>
-        <div class="wrapper">
-            <main class="root">
-                <img class="logo" src="/img/logo_en.svg" />
-                <div class="link-input-wrapper">
-                    <input type="url" id="urlInput" placeholder="Shorten your link" />
-                    <button id="cutButton" class="cut-button loading">
-                        <span>Cut</span>
-                        <div class="loader"></div>
-                    </button>
-                </div>
-                <div class="custom-tag-wrapper">
-                    <strong>kes.im/</strong>
-                    <input id="slugInput" placeholder="your very special keyword, only a-z, A-Z, 0-9, and - or _ (can't start or end with _ or -)" />
-                </div>
-                <div class="captcha">
-                    <div class="cf-turnstile"
-                        data-sitekey="0x4AAAAAAAfcjB2aIe7Uas6w"
-                        data-theme="light"
-                        data-callback="turnstileOnSuccess"
-                        data-expired-callback="turnstileOnExpired"
-                    ></div>
-                </div>
-                <div class="results-wrapper">
-                    <ul class="results-list" id="results"></ul>
-                </div>
-                <div class="about">
-                    kes.im, no-ad no-log url shortener<br>
-                    developed by <a target="_blank" href="https://rames.dev">rames</a>, designed by <a target="_blank" href="http://www.hellocihan.com/">cihan</a><br>
-                    works on top of <a rel="nofollow" target="_blank" href="https://workers.cloudflare.com/" >cloudflare workers</a><br>
-                    opensourced on <a rel="nofollow" target="_blank" href="https://github.com/ramesaliyev/kes.im">github</a>
-                </div>
-                <div class="donation">
-                    <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Buy me a Beer', '#4779ff', 'E1E210QHEN');kofiwidget2.draw();</script>  
-                </div>
-            </main>
+    <!-- Assets -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/main.css">
+
+    <!-- Scripts -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <main class="root">
+        <img class="logo" src="/img/logo_en.svg" />
+        <div class="link-input-wrapper">
+          <input type="url" id="urlInput" placeholder="Shorten your link" />
+          <button id="cutButton" class="cut-button loading">
+            <span>Cut</span>
+            <div class="loader"></div>
+          </button>
         </div>
-        <script type="text/javascript" src="/js/main.js"></script> 
-    </body>
+        <div class="custom-tag-wrapper">
+          <strong>kes.im/</strong>
+          <input id="slugInput" placeholder="(optional) your very special keyword, only a-z, A-Z, 0-9, and - or _ (can't start or end with _ or -), min 3 max 64 characters" />
+        </div>
+        <div class="captcha">
+          <div class="cf-turnstile"
+            data-sitekey="0x4AAAAAAAfcjB2aIe7Uas6w"
+            data-theme="light"
+            data-callback="turnstileOnSuccess"
+            data-expired-callback="turnstileOnExpired"
+          ></div>
+        </div>
+        <div class="results-wrapper">
+          <ul class="results-list" id="results"></ul>
+        </div>
+        <div class="about">
+          kes.im, no-ad no-log url shortener<br>
+          developed by <a target="_blank" href="https://rames.dev">rames</a>, designed by <a target="_blank" href="http://www.hellocihan.com/">cihan</a><br>
+          works on top of <a rel="nofollow" target="_blank" href="https://workers.cloudflare.com/" >cloudflare workers</a><br>
+          opensourced on <a rel="nofollow" target="_blank" href="https://github.com/ramesaliyev/kes.im">github</a>
+        </div>
+        <div class="donation">
+          <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Buy me a Beer', '#4779ff', 'E1E210QHEN');kofiwidget2.draw();</script>  
+        </div>
+      </main>
+    </div>
+    <script type="text/javascript" src="/js/main.js"></script> 
+  </body>
 </html>

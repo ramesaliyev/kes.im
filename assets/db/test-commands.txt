@@ -1,0 +1,9 @@
+npx wrangler d1 execute kesim --local --file=db/init.sql
+
+npx wrangler d1 execute kesim --local --command="SELECT * FROM links"
+
+npx wrangler d1 execute kesim --local --command="SELECT name, type, sql FROM sqlite_schema WHERE type IN ('index')"
+
+npx wrangler d1 execute kesim --local --command="EXPLAIN QUERY PLAN SELECT * FROM links WHERE slug = 'ra' LIMIT 1;"
+
+npx wrangler d1 execute kesim --local --command="EXPLAIN QUERY PLAN SELECT * FROM links WHERE url = 'https://rames.dev' LIMIT 1;"

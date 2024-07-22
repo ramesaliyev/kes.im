@@ -1,22 +1,32 @@
+#:schema node_modules/wrangler/config-schema.json
 name = "kesim"
+main = "src/entry.ts"
+compatibility_date = "2024-07-18"
+compatibility_flags = ["nodejs_compat"]
+
+#
 workers_dev = false
 account_id = "f6eb193c5ada002251ec96253583e74d"
+
 routes = [
   "kes.im/*",
-  "api.kes.im/*"
+  "api.kes.im/*",
 ]
-main = "workers-site/index.js"
-compatibility_date = "2023-03-12"
-
-[[kv_namespaces]]
-binding = "kesim_data"
-id = "767fc2258dd94aa09ddcacdac19b1e23"
 
 [site]
 bucket = "./public"
 
-[vars]
-CF_TURNSTILE_VERIFY_URL = "https://challenges.cloudflare.com/turnstile/v0/siteverify"
+[placement]
+mode = "smart"
+
+[[kv_namespaces]]
+binding = "KV_LINKS"
+id = "767fc2258dd94aa09ddcacdac19b1e23"
+
+[[d1_databases]]
+binding = "D1_LINKS" # available in your Worker on env.DB
+database_name = "kesim"
+database_id = "7356670a-5a76-414d-b8e0-92c30ed0f743"
 
 [[unsafe.bindings]]
 name = "API_RATE_LIMITER"
@@ -25,3 +35,20 @@ namespace_id = "2000001"
 # Limit: the number of tokens allowed within a given period in a single Cloudflare location.
 # Period: the duration of the period, in seconds. Must be either 10 or 60.
 simple = {limit = 3, period = 10}
+
+[vars]
+DEBUG_MODE = true
+CFG_SITE_HTTP_ORIGIN = "https://kes.im"
+CFG_SITE_HTTP_HOSTNAME = "kes.im"
+CFG_SITE_HTTP_API_HOSTNAME = "api.kes.im"
+CFG_RANDOM_SLUG_LENGTH = 5
+CFG_MIN_SLUG_LENGTH = 3
+CFG_MAX_SLUG_LENGTH = 64
+CFG_MIN_URL_LENGTH = 10
+CFG_MAX_URL_LENGTH = 2048
+CFG_DEFAULT_CACHE_AGE = 3600 # an hour
+CFG_STATIC_CACHE_AGE = 86400 # a day
+CFG_REDIRECT_CACHE_AGE = 31536000 # a year
+CF_STATIC_ASSET_TTL = 172800 # 2 days
+CF_TURNSTILE_VERIFY_URL = "https://challenges.cloudflare.com/turnstile/v0/siteverify"
+CF_KV_CACHE_TTL = 864000
