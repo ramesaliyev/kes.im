@@ -58,7 +58,8 @@ export function isURLValidAndAllowed(url:string, minLen:number, maxLen:number): 
   }
 
   // Check if url includes banned keywords.
-  if (banned.URL_KEYWORDS.some(suffix => url.indexOf(suffix) !== -1)) {
+  const lowerCaseUrl = url.toLowerCase();
+  if (banned.URL_KEYWORDS.some(suffix => lowerCaseUrl.indexOf(suffix) !== -1)) {
     return false;
   }
 

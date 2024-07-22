@@ -4,9 +4,11 @@ const HOSTNAMES = [
   "tinyurl.com",
   "redr.me",
   "is.gd",
+  "t.ly",
 ];
 
 const URL_KEYWORDS = [
+  "blogspot.com", // Blogspot is banned because it's somehow became a spammer's favorite. Shame on you, blogspot.
   "helfingt",
   "kntldwammkbsa",
   "francisco36919",
@@ -46,6 +48,17 @@ const URL_KEYWORDS = [
   "angeelina",
   "l.wl.co",
   "xdxdxfdxfgdfgdasdadwa",
+  "hokky.xyz",
+  "hw36t636q6h",
+  "lohlo.top",
+  "komplenganjis",
+  "bablass69.site",
+  "by8uis.site",
+  "kendat.site",
+  "versewqa1",
+  "vrsetgwaet",
+  "detyui31",
+  "hgty56vwrhj912",
 ];
 
 const SLUGS = [
