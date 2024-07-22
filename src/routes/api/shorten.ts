@@ -1,4 +1,4 @@
-import { AppErrorCode } from '../../app/errors';
+import {AppErrorCode} from '../../app/error';
 import AppRoute from '../../app/route';
 
 export default class APIShortenRoute extends AppRoute {

@@ -1,6 +1,6 @@
 
 import App from './app';
-import {AppErrorCode, AppErrorPayload} from './errors';
+import {AppErrorCode, AppErrorPayload} from './error';
 
 type HeadersObject = Record<string, string>;
 

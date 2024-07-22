@@ -9,27 +9,34 @@ async function compileTypeScript(sourceFilePath, outputFilePath, comment) {
     bundle: true,
     platform: 'browser',
     target: ['es6'],
-    format: 'iife', // Immediately Invoked Function Expression format suitable for browsers
+    format: 'esm', // ES module format
     minify: true, // Optional: Minify the output
     banner: { js: `\n// ${comment}\n` }, // Add the comment at the top of the output file
   });
 }
 
-// Paths to the input TypeScript file and output JavaScript file
 const rootPath = path.resolve(__dirname, '../../');
-const inputTSFileRelativePath = 'src/lib/verify.ts';
-const outputJSFileRelativePath = 'public/js/modules/verify.js';
-const inputTSFilePath = path.join(rootPath, inputTSFileRelativePath);
-const outputJSFilePath = path.join(rootPath, outputJSFileRelativePath);
 
-// The comment to add to the top of the output file
-const comment = `This file is auto-generated from the "${inputTSFileRelativePath}"`;
+const filesToCompile = [
+  {
+    inputTSFileRelativePath: 'src/lib/verify.ts',
+    outputJSFileRelativePath: 'public/js/modules/verify.js',
+  },
+  {
+    inputTSFileRelativePath: 'src/lib/errors.ts',
+    outputJSFileRelativePath: 'public/js/modules/errors.js',
+  },
+];
 
-try {
-  // Compile and bundle the TypeScript file with the comment
-  compileTypeScript(inputTSFilePath, outputJSFilePath, comment);
-  console.log(`[SUCCESS] Compiled and bundled ${inputTSFileRelativePath} to ${outputJSFileRelativePath}`);
+filesToCompile.forEach(({inputTSFileRelativePath, outputJSFileRelativePath}) => {
+  const inputTSFilePath = path.join(rootPath, inputTSFileRelativePath);
+  const outputJSFilePath = path.join(rootPath, outputJSFileRelativePath);
+  const comment = `This file is auto-generated from the "${inputTSFileRelativePath}"`;
 
-} catch (error) {
-  console.error('[ERROR] Error during compile-to-public:', error);
-}
+  try {
+    compileTypeScript(inputTSFilePath, outputJSFilePath, comment);
+    console.log(`[SUCCESS] Compiled and bundled ${inputTSFileRelativePath} to ${outputJSFileRelativePath}`);
+  } catch (error) {
+    console.error(`[ERROR] Error during compile-to-public of ${inputTSFileRelativePath}:`, error);
+  }
+});

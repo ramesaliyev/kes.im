@@ -5,13 +5,15 @@ compatibility_date = "2024-07-18"
 compatibility_flags = ["nodejs_compat"]
 
 #
-workers_dev = false
 account_id = "f6eb193c5ada002251ec96253583e74d"
+workers_dev = false
+minify = true
 
 routes = [
   "kes.im/*",
   "api.kes.im/*",
 ]
+
 
 [build]
 command = "npm run prepare"

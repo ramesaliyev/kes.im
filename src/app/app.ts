@@ -2,7 +2,7 @@ import AppRequest from './request';
 import AppResponse from './response';
 import AppLogger from './logger';
 import AppKVAssetManager from './kvam';
-import AppErrors from './errors';
+import AppError from './error';
 import AppRouter from './router';
 import AppModel from './model';
 
@@ -24,7 +24,7 @@ export default class App {
   res: AppResponse;
   log: AppLogger;
   kvam: AppKVAssetManager;
-  err: AppErrors;
+  err: AppError;
   model: AppModel;
   env: Env;
   ctx: ExecutionContext;
@@ -52,7 +52,7 @@ export default class App {
     this.res = new AppResponse(this);
     this.log = new AppLogger(this);
     this.kvam = new AppKVAssetManager(this);
-    this.err = new AppErrors(this);
+    this.err = new AppError(this);
     this.router = new AppRouter(this);
     this.model = new AppModel(this);
   }
