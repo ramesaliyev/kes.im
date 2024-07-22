@@ -1,4 +1,4 @@
-name: Test & Deploy Prod on Push/Master
+name: Deploy Prod
 
 on:
   push:

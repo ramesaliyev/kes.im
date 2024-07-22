@@ -10,7 +10,7 @@ This implementation uses D1 for storage (migrating automatically from KV), Rate 
 - Banneds Hostnames,Hostname Suffixes,Slugs
 - Random Link Generation
 
-![Github Actions Status](https://github.com/ramesaliyev/kes.im/actions/test-and-deploy.yml/badge.svg)
+[![Github Actions Status](https://github.com/ramesaliyev/kes.im/actions/workflows/test-and-deploy.yml/badge.svg)](https://github.com/ramesaliyev/kes.im/actions/workflows/test-and-deploy.yml)
 
 #### Contributors [𐃉](https://github.com/ramesaliyev/kes.im/graphs/contributors)
 - [Cihat İslam Dede](https://github.com/cihatislamdede)
