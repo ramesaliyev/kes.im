@@ -22,6 +22,9 @@
   "dependencies": {
     "@cloudflare/kv-asset-handler": "^0.3.4"
   },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "^4.19.0"
+  },
   "overrides": {
     "@types/node": "20.8.3"
   }
