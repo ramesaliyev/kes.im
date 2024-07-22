@@ -3,7 +3,7 @@ import AppRoute from '../app/route';
 import StaticRoute from './static';
 
 export default class RedirectRoute extends AppRoute {
-	cacheable = true;
+  cacheable = true;
 
   constructor(app:App) {
     super(app);

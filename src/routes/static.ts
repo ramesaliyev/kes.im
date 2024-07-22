@@ -48,13 +48,13 @@ export default class StaticRoute extends AppRoute {
     const {kvam, req, res, err} = this.app;
     
     const eventReq = req.getEventReq();
-		const errorPage = await kvam.getAssetFromKV(eventReq, _req => {
-			const url = new URL(_req.url);
-			url.pathname = `/${errorCode}.html`;
-			return new Request(url.toString(), _req);
-		});
+    const errorPage = await kvam.getAssetFromKV(eventReq, _req => {
+      const url = new URL(_req.url);
+      url.pathname = `/${errorCode}.html`;
+      return new Request(url.toString(), _req);
+    });
 
-		if (errorPage) {
+    if (errorPage) {
       return res.asset(errorPage, errorCode);
     }
 
@@ -62,10 +62,10 @@ export default class StaticRoute extends AppRoute {
   }
 
   async serve404() {
-		return this.serveErrorPage(404);
+    return this.serveErrorPage(404);
   }
 
   async serve500() {
-		return this.serveErrorPage(500);
+    return this.serveErrorPage(500);
   }
 }

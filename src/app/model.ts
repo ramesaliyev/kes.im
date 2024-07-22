@@ -10,7 +10,7 @@ export default class AppModel {
 
   constructor(app:App) {
     this.app = app;
-		this.#db = new AppDatabase(this.app);
+    this.#db = new AppDatabase(this.app);
   }
 
   /**
@@ -30,7 +30,7 @@ export default class AppModel {
     // If slug is provided.
     if (slug) {
       const minSlugLen = env.CFG_MIN_SLUG_LENGTH;
-			const maxSlugLen = env.CFG_MAX_SLUG_LENGTH;
+      const maxSlugLen = env.CFG_MAX_SLUG_LENGTH;
 
       // Check if slug is valid.
       if (!isSlugValidAndAllowed(slug, minSlugLen, maxSlugLen)) {

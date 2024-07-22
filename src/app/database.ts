@@ -1,7 +1,7 @@
 import App from './app';
 
 type QueryMap = {
-	[key: string]: string | D1PreparedStatement;
+  [key: string]: string | D1PreparedStatement;
 };
 
 interface D1LinksEntry {
