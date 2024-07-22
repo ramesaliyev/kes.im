@@ -8,6 +8,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    name: Test
     strategy:
       matrix:
         node-version: [20.x]

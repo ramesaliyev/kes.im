@@ -67,9 +67,9 @@ export function isURLValidAndAllowed(url:string, minLen:number, maxLen:number): 
    * Check for known scam URL patterns.
    */
   const pathSegs = parsedURL.getPathSegments();
+  const firstPath = pathSegs[0];
 
   // Pattern 1: "http://.../<single-very-long-path>" + nearly full random chars.
-  const firstPath = pathSegs[0];
   if (
     parsedURL.isHttpProtocol() &&
     pathSegs.length === 1 &&
