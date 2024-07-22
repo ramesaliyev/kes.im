@@ -13,6 +13,11 @@ routes = [
   "api.kes.im/*",
 ]
 
+[build]
+command = "npm run prepare"
+cwd = "."
+watch_dir = "."
+
 [site]
 bucket = "./public"
 

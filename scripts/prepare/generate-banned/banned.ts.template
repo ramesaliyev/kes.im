@@ -1,0 +1,17 @@
+const HOSTNAMES = [
+  __HOSTNAMES__
+];
+
+const URL_KEYWORDS = [
+  __URL_KEYWORDS__
+];
+
+const SLUGS = [
+  __SLUGS__
+];
+
+export default {
+  HOSTNAMES,
+  URL_KEYWORDS,
+  SLUGS,
+};
