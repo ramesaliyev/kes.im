@@ -32,6 +32,9 @@ const HOSTNAME_KEYWORDS = [
   "guru-tracking.com",
   "pawaka2",
   "generatorku5454",
+  "zsdfgeabgegr6t3",
+  "sidselmehl",
+  "krawu",
 ];
 
 const SLUGS = [
