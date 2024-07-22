@@ -16,4 +16,16 @@ export class URL2 {
   getPathSegments() {
     return this.getPathname().split("/").slice(1);
   }
+
+  getProtocol() {
+    return this.#url.protocol;
+  }
+
+  isHttpProtocol() {
+    return this.getProtocol() === "http:";
+  }
+
+  isHttpsProtocol() {
+    return this.getProtocol() === "https:";
+  }
 }

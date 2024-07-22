@@ -63,6 +63,23 @@ export function isURLValidAndAllowed(url:string, minLen:number, maxLen:number): 
     return false;
   }
 
+  /**
+   * Check for known scam URL patterns.
+   */
+  const pathSegs = parsedURL.getPathSegments();
+
+  // Pattern 1: "http://.../<single-very-long-path>" + nearly full random chars.
+  const firstPath = pathSegs[0];
+  if (
+    parsedURL.isHttpProtocol() &&
+    pathSegs.length === 1 &&
+    firstPath.length > 40 &&
+    !firstPath.includes('-') &&
+    !firstPath.includes('_')
+  ) {
+    return false;
+  }
+
   // Okay, you won this time.
   return true;
 }
