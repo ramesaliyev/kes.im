@@ -1,4 +1,4 @@
-// Generate banned.ts/js files.
+// Generate src/lib/banned.ts file.
 require('./generate-banned');
 
 // Compile some .ts files to .js and save them in the public/js/modules
