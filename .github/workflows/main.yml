@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Test
-        run: echo "*** test ***"
+        run: npm test
   deploy:
     runs-on: ubuntu-latest
     name: Deploy
