@@ -11,7 +11,7 @@ async function compileTypeScript(sourceFilePath, outputFilePath, comment) {
     target: ['es6'],
     format: 'iife', // Immediately Invoked Function Expression format suitable for browsers
     minify: true, // Optional: Minify the output
-    banner: { js: `\n// ${comment}\n\n` }, // Add the comment at the top of the output file
+    banner: { js: `\n// ${comment}\n` }, // Add the comment at the top of the output file
   });
 }
 
@@ -23,7 +23,7 @@ const inputTSFilePath = path.join(rootPath, inputTSFileRelativePath);
 const outputJSFilePath = path.join(rootPath, outputJSFileRelativePath);
 
 // The comment to add to the top of the output file
-const comment = `This file is auto-generated from the files under "${inputTSFileRelativePath}"`;
+const comment = `This file is auto-generated from the "${inputTSFileRelativePath}"`;
 
 try {
   // Compile and bundle the TypeScript file with the comment
