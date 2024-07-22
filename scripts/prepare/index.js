@@ -1,6 +1,6 @@
 // Generate banned.ts/js files.
 require('./generate-banned');
 
-// Compile and copy verify.ts to public/js/modules/verify.js
+// Compile some .ts files to .js and save them in the public/js/modules
 require('./compile-to-public');
 
