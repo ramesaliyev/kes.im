@@ -1,11 +1,13 @@
 const HOSTNAMES = [
-  "bitly.com",
   "kes.im",
+  "bitly.com",
   "tinyurl.com",
+  "redr.me",
+  "is.gd",
 ];
 
 const HOSTNAME_KEYWORDS = [
-  "helfingt.homes",
+  "helfingt",
   "kntldwammkbsa",
   "francisco36919",
   "jarananko",
@@ -16,7 +18,7 @@ const HOSTNAME_KEYWORDS = [
   "gresju4.xyz",
   "ruyii.xyz",
   "4xouhk7gb1",
-  "hojimetx.homes",
+  "hojimetx",
   "monicahess.eu.org",
   "brianr.xyz",
   "fer46twhbe",
@@ -25,7 +27,7 @@ const HOSTNAME_KEYWORDS = [
   "g5angen",
   "imonetizet2027",
   "aithne.xyz",
-  "elaina-nunez.xyz",
+  "elaina-nunez",
   "badwui85.xyz",
   "uiopp.xyz",
   "afg3we5tgqw35",
@@ -35,6 +37,14 @@ const HOSTNAME_KEYWORDS = [
   "zsdfgeabgegr6t3",
   "sidselmehl",
   "krawu",
+  "delightfuidates",
+  "specialforyoulove",
+  "marenvelten",
+  "vreswafgy33",
+  "dsgadfsgadf6",
+  "kominfo",
+  "angeelina",
+  "l.wl.co",
 ];
 
 const SLUGS = [
