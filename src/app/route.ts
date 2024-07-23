@@ -30,7 +30,7 @@ export default abstract class AppRoute {
     // If not found, serve and cache.
 
     const {req, env, ctx} = this.app;
-    const cache = caches.default;
+    const cache = (caches as any).default as Cache;
     const eventReq = req.getEventReq();
 
     // Try to retrieve from cache.
