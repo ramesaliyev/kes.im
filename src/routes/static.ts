@@ -9,7 +9,8 @@ export default class StaticRoute extends AppRoute {
     super(app);
 
     // Set cache control age.
-    this.cacheControlAge = app.env.CFG_STATIC_CACHE_AGE;
+    this.cacheControlAge = app.env.CFG_DEFAULT_STATIC_CACHE_AGE;
+    this.cacheControlAgeMode = 'default';
   }
 
   async serve() {

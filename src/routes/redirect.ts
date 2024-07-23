@@ -10,6 +10,7 @@ export default class RedirectRoute extends AppRoute {
 
     // Set cache control age.
     this.cacheControlAge = app.env.CFG_REDIRECT_CACHE_AGE;
+    this.cacheControlAgeMode = 'override';
   }
 
   async serve() {
