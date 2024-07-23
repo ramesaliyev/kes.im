@@ -8,8 +8,9 @@ CREATE TABLE IF NOT EXISTS links (
 );
 
 -- Create index for links table
---CREATE INDEX IF NOT EXISTS idx_links_slug ON links(slug);
-CREATE INDEX IF NOT EXISTS idx_links_url ON links(url);
+-- (No need to create index for url as it is already unique)
+-- DROP INDEX IF EXISTS idx_links_url;
+-- CREATE INDEX IF NOT EXISTS idx_links_url ON links(url);
 
 -- Fill links table with some data.
 INSERT INTO links
