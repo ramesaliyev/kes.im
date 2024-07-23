@@ -1,7 +1,7 @@
 
 #### Init DB
 
-    npx wrangler d1 execute kesim --local --file=db/init.sql
+    npx wrangler d1 execute kesim --local --file=assets/db/init.sql
 
 #### Test
 
