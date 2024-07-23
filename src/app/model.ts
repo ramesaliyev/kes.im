@@ -129,15 +129,6 @@ export default class AppModel {
     // Then check if we should insert to D1.
     this.#db.kvLinksDelete(slug);
 
-    // URL from KV should comply with the latest rules.
-    // Otherwise we wont insert it into D1 and return null.
-    const {env} = this.app;
-    const minURLLen = env.CFG_MIN_URL_LENGTH;
-    const maxURLLen = env.CFG_MAX_URL_LENGTH;
-    if (!isURLValidAndAllowed(url, minURLLen, maxURLLen)) {
-      return null;
-    }
-
     // Check if D1 has URL with another slug.
     // If it does, we should not insert to D1 and return null.
     const existingSlugOnD1 = await this.fetchSlugByUrl(url);

@@ -114,7 +114,7 @@ export default class AppResponse {
     }
 
     // Respond.
-    return this.#respond(options.status ?? 200, body, options);
+    return this.#respond(options.status || 200, body, options);
   }
 
   /**

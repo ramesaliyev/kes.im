@@ -19,12 +19,44 @@ export interface AppErrorPayload {
 }
 
 export const AppErrorPayloadsMap: Record<AppErrorCode, AppErrorPayload> = {
-  [AppErrorCodesMap.UNKNOWN]: {code: 'UNKNOWN', message: 'Unknown internal error occurred, save yourselves!', status: 500},
-  [AppErrorCodesMap.NOT_FOUND]: {code: 'NOT_FOUND', message: 'Not found. Like your girlfriend.', status: 404},
-  [AppErrorCodesMap.BAD_REQ]: {code: 'BAD_REQ', message: 'Bad Request. Just bad.', status: 400},
-  [AppErrorCodesMap.BAD_URL]: {code: 'BAD_URL', message: 'Provided URL is either not valid or not allowed.', status: 400},
-  [AppErrorCodesMap.BAD_SLUG]: {code: 'BAD_SLUG', message: 'Slug is either not in correct format or not allowed.', status: 400},
-  [AppErrorCodesMap.BAD_CAPTCHA]: {code: 'BAD_CAPTCHA', message: 'Captcha/Security check is not passed.', status: 400},
-  [AppErrorCodesMap.SLUG_NA]: {code: 'SLUG_NA', message: 'Slug already in use.', status: 400},
-  [AppErrorCodesMap.LIMIT_EXCEEDED]: {code: 'LIMIT_EXCEEDED', message: 'Maximum request limit for a minute is exceeded.', status: 429},
+  [AppErrorCodesMap.UNKNOWN]: {
+    code: 'UNKNOWN',
+    message: 'Unknown internal error occurred, save yourselves!',
+    status: 500,
+  },
+  [AppErrorCodesMap.NOT_FOUND]: {
+    code: 'NOT_FOUND',
+    message: 'Not found. Like your girlfriend.',
+    status: 404
+  },
+  [AppErrorCodesMap.BAD_REQ]: {
+    code: 'BAD_REQ',
+    message: 'Bad Request. Just bad.',
+    status: 400
+  },
+  [AppErrorCodesMap.BAD_URL]: {
+    code: 'BAD_URL',
+    message: 'Provided URL is either not valid or not allowed.',
+    status: 400
+  },
+  [AppErrorCodesMap.BAD_SLUG]: {
+    code: 'BAD_SLUG',
+    message: 'Slug is either not in correct format or not allowed.',
+    status: 400
+  },
+  [AppErrorCodesMap.BAD_CAPTCHA]: {
+    code: 'BAD_CAPTCHA',
+    message: 'Captcha/Security check is not passed. Are you a robot?',
+    status: 400
+  },
+  [AppErrorCodesMap.SLUG_NA]: {
+    code: 'SLUG_NA',
+    message: 'Slug already in use.',
+    status: 400
+  },
+  [AppErrorCodesMap.LIMIT_EXCEEDED]: {
+    code: 'LIMIT_EXCEEDED',
+    message: 'Maximum request limit per 10 seconds is exceeded. Slow down.',
+    status: 429
+  },
 };
