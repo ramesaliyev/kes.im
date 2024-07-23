@@ -21,9 +21,9 @@ VALUES
   ('kesim', 'https://kes.im'),
   ('trigonoparty', 'https://ramesaliyev.com/trigonoparty/'),
   ('repo','https://github.com/ramesaliyev/kes.im'),
-  ('cloudflare', 'https://cloudflare.com'),
+  ('cloudflare', 'https://www.cloudflare.com'),
   ('github', 'https://github.com'),
-  ('chess', 'https://chess.com'),
+  ('chess', 'https://www.chess.com'),
   ('chatgpt', 'https://chatgpt.com'), 
-  ('youtube', 'https://youtube.com'),
-  ('reddit', 'https://reddit.com');
+  ('youtube', 'https://www.youtube.com'),
+  ('reddit', 'https://www.reddit.com');
