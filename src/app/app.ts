@@ -1,3 +1,5 @@
+import {isURLValidAndAllowed, isSlugValidAndAllowed} from '../lib/verify';
+
 import AppRequest from './request';
 import AppResponse from './response';
 import AppLogger from './logger';
@@ -59,5 +61,19 @@ export default class App {
 
   isDebugMode() {
     return this.env.DEBUG_MODE;
+  }
+
+  isURLValidAndAllowed(url:string): boolean {
+    return isURLValidAndAllowed(url,
+      this.env.CFG_MIN_URL_LENGTH,
+      this.env.CFG_MAX_URL_LENGTH
+    );
+  }
+
+  isSlugValidAndAllowed(slug:string): boolean {
+    return isSlugValidAndAllowed(slug,
+      this.env.CFG_MIN_SLUG_LENGTH,
+      this.env.CFG_MAX_SLUG_LENGTH
+    );
   }
 }

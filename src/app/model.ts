@@ -1,4 +1,3 @@
-import {isSlugValidAndAllowed, isURLValidAndAllowed} from '../lib/verify';
 import {generateRandomBase62} from '../lib/base62';
 
 import App from './app';
@@ -17,23 +16,17 @@ export default class AppModel {
    * Insert link if slug and URL are valid.
    */
   async createLinkEntry(url:string, slug:string|null = null): Promise<string> {
-    const {err, env} = this.app;
-    const errCodes = err.code;
+    const errCodes = this.app.err.code;
 
     // Check if URL is valid.
-    const minURLLen = env.CFG_MIN_URL_LENGTH;
-    const maxURLLen = env.CFG_MAX_URL_LENGTH;
-    if (!isURLValidAndAllowed(url, minURLLen, maxURLLen)) {
+    if (!this.app.isURLValidAndAllowed(url)) {
       throw errCodes.BAD_URL;
     }
 
     // If slug is provided.
     if (slug) {
-      const minSlugLen = env.CFG_MIN_SLUG_LENGTH;
-      const maxSlugLen = env.CFG_MAX_SLUG_LENGTH;
-
       // Check if slug is valid.
-      if (!isSlugValidAndAllowed(slug, minSlugLen, maxSlugLen)) {
+      if (!this.app.isSlugValidAndAllowed(slug)) {
         throw errCodes.BAD_SLUG;
       }
 
@@ -63,16 +56,13 @@ export default class AppModel {
    * Helper function to generate a random available slug.
    */
   async generateAvailableRandomSlug(): Promise<string> {
-    const {env} = this.app;
-    const randomSlugLen = env.CFG_RANDOM_SLUG_LENGTH;
-    const minSlugLen = env.CFG_MIN_SLUG_LENGTH;
-    const maxSlugLen = env.CFG_MAX_SLUG_LENGTH;
+    const randomSlugLen = this.app.env.CFG_RANDOM_SLUG_LENGTH;
 
     // Generate random slug.
     const slug = generateRandomBase62(randomSlugLen);
     
     // Verify slug.
-    if (!isSlugValidAndAllowed(slug, minSlugLen, maxSlugLen)) {
+    if (!this.app.isSlugValidAndAllowed(slug)) {
       return this.generateAvailableRandomSlug();
     }
   

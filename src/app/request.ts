@@ -1,6 +1,4 @@
 import {URL2} from '../lib/url';
-import {isSlugValidAndAllowed} from '../lib/verify';
-
 import App from './app';
 
 interface Parsed {
@@ -79,10 +77,6 @@ export default class AppRequest {
 
     // Parse if not parsed yet.
     if (parsedSlug === false) {
-      const {env} = this.app;
-      const minSlugLen = env.CFG_MIN_SLUG_LENGTH;
-      const maxSlugLen = env.CFG_MAX_SLUG_LENGTH;
-
       parsedSlug = null;
 
       try {
@@ -91,7 +85,7 @@ export default class AppRequest {
         if (pathSegments.length === 1) {
           const slug = pathSegments[0];
           
-          if (isSlugValidAndAllowed(slug, minSlugLen, maxSlugLen)) {
+          if (this.app.isSlugValidAndAllowed(slug)) {
             parsedSlug = slug;
           }
         }
