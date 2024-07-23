@@ -17,6 +17,8 @@ INSERT INTO links
   (slug, url)
 VALUES
   ('rames', 'https://rames.dev'),
+  ('ramesaliyev', 'https://ramesaliyev.com'),
+  ('kesim', 'https://kes.im'),
   ('trigonoparty', 'https://ramesaliyev.com/trigonoparty/'),
   ('repo','https://github.com/ramesaliyev/kes.im'),
   ('cloudflare', 'https://cloudflare.com'),
