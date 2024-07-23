@@ -234,6 +234,12 @@ input:focus::placeholder {
   color: #FF474E;
   background-image: none;
   padding: 0 20px;
+  animation: result-error-glow 1s ease-in-out;
+}
+
+@keyframes result-error-glow {
+  0% { outline: 1px solid #FF474E; }
+  100% { outline-color: transparent; }
 }
 
 .result-item:last-child {
