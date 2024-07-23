@@ -15,7 +15,7 @@ routes = [
 ]
 
 [build]
-command = "npm run prepare"
+command = "npm run pre-deploy"
 cwd = "."
 watch_dir = "."
 
