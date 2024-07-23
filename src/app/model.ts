@@ -2,6 +2,7 @@ import {generateRandomBase62} from '../lib/base62';
 
 import App from './app';
 import AppDatabase from './database';
+import {AppErrorCode} from './error';
 
 export default class AppModel {
   app: App;
@@ -131,7 +132,7 @@ export default class AppModel {
     try {
       await this.createLinkEntry(url, slug);
     } catch (e) {
-      this.app.log.info(`Failed to migrate ${slug}:${url} to D1: ${e}`);
+      this.app.log.info(`Failed to migrate ${slug}:${url} to D1: ${this.app.err.get(e as AppErrorCode).code}`);
       return null;
     }
 
