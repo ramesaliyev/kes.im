@@ -131,6 +131,7 @@ export default class AppModel {
     try {
       await this.createLinkEntry(url, slug);
     } catch (e) {
+      this.app.log.info(`Failed to migrate ${slug}:${url} to D1: ${e}`);
       return null;
     }
 
