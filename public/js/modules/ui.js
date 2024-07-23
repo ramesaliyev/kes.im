@@ -74,7 +74,7 @@ export default class AppUI {
    */
   showError(appErrorPayload) {
     this.#DOM.resultList.insertAdjacentHTML('afterbegin', `
-      <li class="result-item result-error">Error: ${appErrorPayload.message}</li>
+      <li class="result-item result-error">${appErrorPayload.message}</li>
     `);
   }
   
