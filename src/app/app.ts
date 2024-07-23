@@ -47,7 +47,7 @@ export default class App {
     }
     
     this.limiter = {
-      api: this.env.API_RATE_LIMITER,
+      api: this.env.API_RATE_LIMITER as RateLimit,
     }
 
     this.req = new AppRequest(this, eventReq);
