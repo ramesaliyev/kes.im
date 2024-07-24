@@ -1,9 +1,7 @@
-const {pow, random, floor} = Math;
+const alphabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+const letterValue = alphabet.reduce((mem:any, letter, index) => (mem[letter] = index, mem), {})
 
-const base62Alphabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-const letterValue = base62Alphabet.reduce((mem:any, letter, index) => (mem[letter] = index, mem), {})
-
-export function fromBase62(n:string) {
+export function decode(n:string) {
   const length = n.length;
   let i = 0;
   let result = 0;
@@ -15,39 +13,37 @@ export function fromBase62(n:string) {
   return result;
 }
 
-export function toBase62(n:number) {
+export function encode(n:number) {
   let result = '';
 
   while (n >= 62) {
-    result += base62Alphabet[n % 62];
+    result += alphabet[n % 62];
     n = Math.floor(n / 62);
   }
 
   if (n !== 0) {
-    result += base62Alphabet[n];
+    result += alphabet[n];
   }
 
   return result.split('').reverse().join('');
 }
 
-export function getNextBase62(prev= '0') {
-  return toBase62(fromBase62(prev) + 1);
+export function next(prev= '0') {
+  return encode(decode(prev) + 1);
 }
 
-export function getBase62Alphabet() {
-  return base62Alphabet;
-}
-
-export function generateRandomBase62(length:number) {
-  return toBase62(floor(random() * pow(base62Alphabet.length, length)));
+export function random(length: number) {
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += alphabet[Math.floor(Math.random() * alphabet.length)];
+  }
+  return result;
 }
 
 export default {
-  alphabet: base62Alphabet,
-  random: generateRandomBase62,
-  fromBase62,
-  toBase62,
-  getNextBase62,
-  getBase62Alphabet,
-  generateRandomBase62
+  alphabet,
+  decode,
+  encode,
+  next,
+  random,
 } as const;
