@@ -35,13 +35,13 @@ export default class AppRequest {
     return this.#url.getPathname();
   }
 
-  getHeader(name: string) {
-    return this.#eventReq.headers.get(name);
-  }
-
   getMethod() {
     return this.#eventReq.method;
   };
+
+  getHeader(name: string) {
+    return this.#eventReq.headers.get(name);
+  }
 
   getUserIP() {
     return this.getHeader('CF-Connecting-IP');

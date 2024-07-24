@@ -6,6 +6,7 @@ import App from './app/app';
 
 export default {
   async fetch(eventReq:Request, env:Env, ctx:ExecutionContext): Promise<Response> {
+    // Create a new app instance.
     const app = new App(eventReq, env, ctx);
 
     // Define routes. Order matters.

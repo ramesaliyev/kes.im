@@ -25,7 +25,7 @@ export default class AppResponse {
   getCORSHeaders() {
     const {req, env} = this.app;
 
-    const requestOrigin = req.getHeader('origin') || '';
+    const requestOrigin = req.getHeader('Origin') || '';
     const requestMethod = req.getHeader('Access-Control-Request-Method');
     const requestHeaders = req.getHeader('Access-Control-Request-Headers');
 
