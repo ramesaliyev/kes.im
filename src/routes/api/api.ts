@@ -1,5 +1,6 @@
 import AppRoute from '../../app/route';
 import AppRouter from '../../app/router';
+import {AppErrorCode} from '../../app/error';
 
 import RevealRoute from './reveal';
 import ShortenRoute from './shorten';
@@ -62,14 +63,48 @@ export default class APIRoute extends AppRoute {
   }
 
   /**
-   * Serve the API route.
+   * Validate the request is safe to serve.
    */
-  async serve() {
-    const {req, res, err} = this.app;
+  async ensureSecure() {
+    const {req, err, env} = this.app;
+
+    // Check if the request is coming from our site.
+    if (req.getHeader('Origin') !== env.CFG_SITE_ORIGIN) {
+      throw err.code.BAD_REQ;
+    }
 
     // Check if the rate limit has been reached.
     if (await this.isRateLimitReached()) {
-      return res.error(err.code.LIMIT_EXCEEDED);
+      throw err.code.LIMIT_EXCEEDED;
+    }
+
+    // Validate POST requests.
+    if (req.getMethod() === 'POST') {
+      const body = await req.getBody();
+
+      // A POST request must have a body.
+      if (!body) {
+        throw err.code.BAD_REQ;
+      }
+
+      // Validate the Turnstile token.
+      if (!await this.validateTurnstileToken(body.token)) {
+        throw err.code.BAD_CAPTCHA;
+      }
+    }
+  }
+
+  /**
+   * Serve the API route.
+   */
+  async serve() {
+    const {req, res} = this.app;
+
+    // Ensure the request is secure.
+    try {
+      await this.ensureSecure();
+    } catch (error) {
+      return res.error(error as AppErrorCode);
     }
 
     // Handle OPTIONS (preflight) request.
@@ -79,18 +114,6 @@ export default class APIRoute extends AppRoute {
 
     // Handle POST requests.
     if (req.getMethod() === 'POST') {
-      const body = await req.getBody();
-
-      // A POST request must have a body. Anybody.
-      if (!body) {
-        return res.error(err.code.BAD_REQ);
-      }
-
-      // Validate the Turnstile token.
-      if (!await this.validateTurnstileToken(body.token)) {
-        return res.error(err.code.BAD_CAPTCHA);
-      }
-
       // Create a router.
       const router = new AppRouter(this.app);
 
