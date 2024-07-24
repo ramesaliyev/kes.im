@@ -1,4 +1,4 @@
-import {generateRandomBase62} from 'lib/base62';
+import Base62 from 'lib/base62';
 
 import App from 'app/app';
 import AppDatabase from 'app/database';
@@ -60,7 +60,7 @@ export default class AppModel {
     const randomSlugLen = this.app.env.CFG_RANDOM_SLUG_LENGTH;
 
     // Generate random slug.
-    const slug = generateRandomBase62(randomSlugLen);
+    const slug = Base62.random(randomSlugLen);
     
     // Verify slug.
     if (!this.app.isSlugValidAndAllowed(slug)) {

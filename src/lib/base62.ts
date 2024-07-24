@@ -41,3 +41,13 @@ export function getBase62Alphabet() {
 export function generateRandomBase62(length:number) {
   return toBase62(floor(random() * pow(base62Alphabet.length, length)));
 }
+
+export default {
+  alphabet: base62Alphabet,
+  random: generateRandomBase62,
+  fromBase62,
+  toBase62,
+  getNextBase62,
+  getBase62Alphabet,
+  generateRandomBase62
+} as const;

@@ -1,9 +1,9 @@
 import banned from 'lib/banned';
-import {getBase62Alphabet} from 'lib/base62';
+import Base62 from 'lib/base62';
 import {URL2} from 'lib/url';
 
 // Patterns
-const extendedAlphabet = [...getBase62Alphabet(), '\\-', '\\_'].join('');
+const extendedAlphabet = [...Base62.alphabet, '\\-', '\\_'].join('');
 const slugPattern = new RegExp(`(?!.*(-|_)$)(?!^(-|_).*)^[${extendedAlphabet}]{1,}$`, 'i');
 const URLPattern = /^(https?:\/\/[^\s\.]+\.[^\s]{2,})/i;
 
