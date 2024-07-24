@@ -15,8 +15,8 @@ const charIndexMap = Object.fromEntries(alphabet.map((char, index) => [char, ind
 
 /**
  * Calculate the power of 62 with caching support.
- * @param num 
- * @returns 
+ * @param num
+ * @returns
  */
 const pow62 = (function () {
   const cache: Record<number, number> = {};
@@ -49,7 +49,7 @@ function decode(encoded: string) {
 
 /**
  * Encode a number to a base62 string.
- * @param num 
+ * @param num
  * @returns string
  */
 function encode(num:number) {
@@ -69,7 +69,7 @@ function encode(num:number) {
 
 /**
  * Calculate the next base62 string.
- * @param prev 
+ * @param prev
  * @returns string
  */
 function next(prev='0') {
@@ -78,8 +78,8 @@ function next(prev='0') {
 
 /**
  * Generates a random base62 string of a given length.
- * @param length 
- * @returns 
+ * @param length
+ * @returns
  */
 function random(length: number) {
   let result = '';

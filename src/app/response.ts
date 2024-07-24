@@ -35,7 +35,7 @@ export default class AppResponse {
 
     const allowedOrigin:string = allowedOrigins.includes(requestOrigin) ?
       requestOrigin : allowedOrigins[0];
-  
+
     return {
       'Access-Control-Allow-Origin': allowedOrigin,
       'Access-Control-Allow-Methods': requestMethod || this.CORS_DEFAULT_METHODS,
@@ -60,7 +60,7 @@ export default class AppResponse {
     Object.entries(extraHeaders).forEach(([key, value]) => {
       headers.set(key, value);
     });
-  }	
+  }
 
   /**
    * Generic, Respond with a body, status, and headers.

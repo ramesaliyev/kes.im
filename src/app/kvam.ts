@@ -29,7 +29,7 @@ export default class AppKVAssetManager {
         return ctx.waitUntil(promise);
       },
     };
-    
+
     const options: Partial<GetAssetFromKVOptions> = {
       cacheControl: {
         browserTTL: env.CF_STATIC_ASSET_TTL, // cache control header returned to browser
@@ -55,7 +55,7 @@ export default class AppKVAssetManager {
       } else {
       }
     }
-  
+
     return null;
   }
 }

@@ -61,7 +61,7 @@ export default class AppRequest {
       try {
         parsedBody = await this.#eventReq.json();
       } catch (e) {}
-      
+
       this.#parsed.body = parsedBody;
     }
 
@@ -84,13 +84,13 @@ export default class AppRequest {
 
         if (pathSegments.length === 1) {
           const slug = pathSegments[0];
-          
+
           if (this.app.isSlugValidAndAllowed(slug)) {
             parsedSlug = slug;
           }
         }
       } catch (e) {}
-      
+
       this.#parsed.slug = parsedSlug;
     }
 

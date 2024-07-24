@@ -1,6 +1,6 @@
 export class URL2 {
   #url: URL;
-  
+
   constructor(urlString:string) {
     this.#url = new URL(urlString);
   }

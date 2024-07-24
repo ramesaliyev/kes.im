@@ -18,7 +18,7 @@ export default class AppDatabase {
   #KVLinks: KVNamespace;
   #D1Links: D1Database;
   #D1LinksQueries: QueryMap;
-  
+
   constructor(app:App) {
     this.app = app;
     this.#KVLinks = this.app.kv.links;
@@ -37,7 +37,7 @@ export default class AppDatabase {
    * KV Links
    * We're doing a auto migration now,
    * This is why we have a KV and D1 methods.
-   * You can remove KV part if you starting from scratch. 
+   * You can remove KV part if you starting from scratch.
    */
   async kvLinksGet(key: string): Promise<string|null> {
     return this.#KVLinks.get(key, {
@@ -58,7 +58,7 @@ export default class AppDatabase {
    */
   #query(key:string): D1PreparedStatement {
     let query = this.#D1LinksQueries[key];
-    
+
     // Prepare query if type is string.
     if (typeof query === 'string') {
       query = this.#D1Links.prepare(query);

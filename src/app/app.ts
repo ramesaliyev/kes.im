@@ -45,7 +45,7 @@ export default class App {
     this.d1 = {
       links: this.env.D1_LINKS,
     }
-    
+
     this.limiter = {
       api: this.env.API_RATE_LIMITER as RateLimit,
     }

@@ -45,7 +45,7 @@ export default class StaticRoute extends AppRoute {
 
   async serveErrorPage(errorCode:number) {
     const {kvam, req, res, err} = this.app;
-    
+
     const eventReq = req.getEventReq();
     const errorPage = await kvam.getAssetFromKV(eventReq, _req => {
       const url = new URL(_req.url);

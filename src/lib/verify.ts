@@ -46,7 +46,7 @@ export function isURLValidAndAllowed(url:string, minLen:number, maxLen:number): 
   } catch (e) {
     return false;
   }
-  
+
   if(!URLPattern.test(url)) {
     return false;
   }

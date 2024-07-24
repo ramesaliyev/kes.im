@@ -61,17 +61,17 @@ export default class AppModel {
 
     // Generate random slug.
     const slug = Base62.random(randomSlugLen);
-    
+
     // Verify slug.
     if (!this.app.isSlugValidAndAllowed(slug)) {
       return this.generateAvailableRandomSlug();
     }
-  
+
     // Check if slug is already in use.
     if (await this.fetchUrlBySlug(slug)) {
       return this.generateAvailableRandomSlug();
     }
-  
+
     // Slug is available.
     return slug;
   }
@@ -84,7 +84,7 @@ export default class AppModel {
   }
 
   /**
-   * 
+   *
    * This is where the migration happens.
    * We revalidate the slug and URL each time.
    * This is not only because of the migration,
@@ -94,7 +94,7 @@ export default class AppModel {
    * I'm just trying to sound more professional.
    * OR maybe I'm schizophrenic. WHO KNOWS?!
    * Anyway. Let's get back to work.
-   * 
+   *
    */
   async fetchUrlBySlug(slug: string): Promise<string|null> {
     // Try to get from D1.

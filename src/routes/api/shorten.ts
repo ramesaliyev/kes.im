@@ -14,7 +14,7 @@ export default class APIShortenRoute extends AppRoute {
     // Create the link.
     try {
       const createdSlug = await model.createLinkEntry(url, slug);
-      
+
       return res.json({slug: createdSlug});
     } catch (errCode) {
       return res.error(errCode as AppErrorCode);

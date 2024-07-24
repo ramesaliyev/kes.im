@@ -51,7 +51,7 @@ export default class APIRoute extends AppRoute {
       method: 'POST',
       headers: {'Content-Type': 'application/json'}
     })
-    
+
     const {hostname, success} = await result.json() as TurnstileChallengeResponse;
 
     // Check the response.
@@ -127,6 +127,6 @@ export default class APIRoute extends AppRoute {
     }
 
     // Handle GET requests.
-    return new DefaultRoute(this.app).fetch();   
+    return new DefaultRoute(this.app).fetch();
   }
 }

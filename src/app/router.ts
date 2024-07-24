@@ -31,7 +31,7 @@ export default class AppRouter {
 
     this.#routes = [];
   }
-  
+
   #addRoute<TType extends keyof RouteEntryMap>(
     type:TType, route: AppRouteType, data?: RouteEntryMap[TType]
   ) {
