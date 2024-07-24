@@ -20,6 +20,7 @@
     "toml": "^3.0.0",
     "typescript": "^5.5.2",
     "uglify-js": "^3.19.0",
+    "vite-tsconfig-paths": "^4.3.2",
     "vitest": "1.5.0",
     "wrangler": "^3.60.3"
   },
