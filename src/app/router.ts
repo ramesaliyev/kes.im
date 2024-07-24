@@ -1,6 +1,6 @@
-import App from './app';
-import AppRequest from './request';
-import AppRoute from './route';
+import App from 'app/app';
+import AppRequest from 'app/request';
+import AppRoute from 'app/route';
 
 type AppRouteType = new (app: App) => AppRoute;
 

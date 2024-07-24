@@ -1,6 +1,6 @@
-import banned from './banned';
-import {getBase62Alphabet} from './base62';
-import {URL2} from './url';
+import banned from 'lib/banned';
+import {getBase62Alphabet} from 'lib/base62';
+import {URL2} from 'lib/url';
 
 // Patterns
 const extendedAlphabet = [...getBase62Alphabet(), '\\-', '\\_'].join('');

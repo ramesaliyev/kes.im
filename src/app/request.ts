@@ -1,5 +1,5 @@
-import {URL2} from '../lib/url';
-import App from './app';
+import {URL2} from 'lib/url';
+import App from 'app/app';
 
 interface Parsed {
   body: any | false | null;

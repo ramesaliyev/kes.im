@@ -1,10 +1,10 @@
-import AppRoute from '../../app/route';
-import AppRouter from '../../app/router';
-import {AppErrorCode} from '../../app/error';
+import AppRoute from 'app/route';
+import AppRouter from 'app/router';
+import {AppErrorCode} from 'app/error';
 
-import RevealRoute from './reveal';
-import ShortenRoute from './shorten';
-import DefaultRoute from './default';
+import RevealRoute from 'routes/api/reveal';
+import ShortenRoute from 'routes/api/shorten';
+import DefaultRoute from 'routes/api/default';
 
 type TurnstileChallengeResponse = {
   success: boolean;

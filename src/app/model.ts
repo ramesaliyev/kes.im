@@ -1,8 +1,8 @@
-import {generateRandomBase62} from '../lib/base62';
+import {generateRandomBase62} from 'lib/base62';
 
-import App from './app';
-import AppDatabase from './database';
-import {AppErrorCode} from './error';
+import App from 'app/app';
+import AppDatabase from 'app/database';
+import {AppErrorCode} from 'app/error';
 
 export default class AppModel {
   app: App;

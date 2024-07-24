@@ -1,5 +1,5 @@
-import App from './app';
-import {AppErrorCode, AppErrorPayload, AppErrorCodesMap, AppErrorPayloadsMap} from '../lib/errors';
+import App from 'app/app';
+import {AppErrorCode, AppErrorPayload, AppErrorCodesMap, AppErrorPayloadsMap} from 'lib/errors';
 
 export type {AppErrorCode, AppErrorPayload};
 

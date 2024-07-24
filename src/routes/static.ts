@@ -1,5 +1,5 @@
-import App from '../app/app';
-import AppRoute from '../app/route';
+import App from 'app/app';
+import AppRoute from 'app/route';
 
 export default class StaticRoute extends AppRoute {
   cacheable = true;

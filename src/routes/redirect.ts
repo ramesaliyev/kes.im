@@ -1,6 +1,6 @@
-import App from '../app/app';
-import AppRoute from '../app/route';
-import StaticRoute from './static';
+import App from 'app/app';
+import AppRoute from 'app/route';
+import StaticRoute from 'routes/static';
 
 export default class RedirectRoute extends AppRoute {
   cacheable = true;

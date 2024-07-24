@@ -1,8 +1,8 @@
-import APIRoute from './routes/api/api';
-import RedirectRoute from './routes/redirect';
-import StaticRoute from './routes/static';
+import APIRoute from 'routes/api/api';
+import RedirectRoute from 'routes/redirect';
+import StaticRoute from 'routes/static';
 
-import App from './app/app';
+import App from 'app/app';
 
 export default {
   async fetch(eventReq:Request, env:Env, ctx:ExecutionContext): Promise<Response> {

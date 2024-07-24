@@ -1,12 +1,12 @@
-import {isURLValidAndAllowed, isSlugValidAndAllowed} from '../lib/verify';
+import {isURLValidAndAllowed, isSlugValidAndAllowed} from 'lib/verify';
 
-import AppRequest from './request';
-import AppResponse from './response';
-import AppLogger from './logger';
-import AppKVAssetManager from './kvam';
-import AppError from './error';
-import AppRouter from './router';
-import AppModel from './model';
+import AppRequest from 'app/request';
+import AppResponse from 'app/response';
+import AppLogger from 'app/logger';
+import AppKVAssetManager from 'app/kvam';
+import AppError from 'app/error';
+import AppRouter from 'app/router';
+import AppModel from 'app/model';
 
 type KVMap = {
   [key: string]: KVNamespace;

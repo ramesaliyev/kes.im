@@ -9,7 +9,7 @@ import {
 import manifestJSON from "__STATIC_CONTENT_MANIFEST";
 const ASSET_MANIFEST = JSON.parse(manifestJSON);
 
-import App from "./app";
+import App from "app/app";
 
 type RequestMapper = typeof mapRequestToAsset;
 

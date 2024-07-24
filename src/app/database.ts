@@ -1,4 +1,4 @@
-import App from './app';
+import App from 'app/app';
 
 type QueryMap = {
   [key: string]: string | D1PreparedStatement;

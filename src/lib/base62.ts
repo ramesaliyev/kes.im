@@ -3,7 +3,7 @@ const {pow, random, floor} = Math;
 const base62Alphabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 const letterValue = base62Alphabet.reduce((mem:any, letter, index) => (mem[letter] = index, mem), {})
 
-function fromBase62(n:string) {
+export function fromBase62(n:string) {
   const length = n.length;
   let i = 0;
   let result = 0;
@@ -15,7 +15,7 @@ function fromBase62(n:string) {
   return result;
 }
 
-function toBase62(n:number) {
+export function toBase62(n:number) {
   let result = '';
 
   while (n >= 62) {
@@ -30,7 +30,7 @@ function toBase62(n:number) {
   return result.split('').reverse().join('');
 }
 
-function getNext(prev= '0') {
+export function getNextBase62(prev= '0') {
   return toBase62(fromBase62(prev) + 1);
 }
 
