@@ -12,7 +12,7 @@ const URLPattern = /^(https?:\/\/[^\s\.]+\.[^\s]{2,})/i;
  */
 export function isSlugValidAndAllowed(slug:string, minLen:number, maxLen:number): boolean {
   // Check slug length.
-  if (slug.length <= minLen || slug.length > maxLen) {
+  if (slug.length < minLen || slug.length > maxLen) {
     return false;
   }
 
@@ -35,7 +35,7 @@ export function isSlugValidAndAllowed(slug:string, minLen:number, maxLen:number)
  */
 export function isURLValidAndAllowed(url:string, minLen:number, maxLen:number): boolean {
   // Check URL length.
-  if (url.length <= minLen || url.length > maxLen) {
+  if (url.length < minLen || url.length > maxLen) {
     return false;
   }
 
