@@ -1,48 +1,56 @@
 #:schema node_modules/wrangler/config-schema.json
-name = "kesim"
-main = "src/entry.ts"
+
+# -- Compability
 compatibility_date = "2024-07-18"
 compatibility_flags = ["nodejs_compat"]
 
-#
+# -- Project configs
 account_id = "f6eb193c5ada002251ec96253583e74d"
+main = "src/entry.ts"
 workers_dev = false
 minify = true
 
-routes = [
-  "kes.im/*",
-  "api.kes.im/*",
-]
-
-[build]
-command = "npm run pre-deploy"
-cwd = "."
-watch_dir = "."
-
-[site]
-bucket = "./public"
-
+# -- Smart placement
 [placement]
 mode = "smart"
 
-[[kv_namespaces]]
-binding = "KV_LINKS"
-id = "767fc2258dd94aa09ddcacdac19b1e23"
+# -- Static files
+[site]
+bucket = "./public"
 
-[[d1_databases]]
-binding = "D1_LINKS" # available in your Worker on env.DB
-database_name = "kesim"
-database_id = "7356670a-5a76-414d-b8e0-92c30ed0f743"
+####################################################################################################
 
-[[unsafe.bindings]]
+# -- PRODUCTION --
+
+[env.prod]
+#
+name = "kesim"
+#
+routes = [
+	{pattern="kes.im", custom_domain=true},
+	{pattern="api.kes.im", custom_domain=true},
+]
+#
+kv_namespaces = [
+  {binding="KV_LINKS", id="767fc2258dd94aa09ddcacdac19b1e23"}
+]
+#
+d1_databases = [
+  {binding="D1_LINKS", database_name="kesim", database_id="7356670a-5a76-414d-b8e0-92c30ed0f743" }
+]
+#
+[[env.prod.unsafe.bindings]]
 name = "API_RATE_LIMITER"
 type = "ratelimit"
-namespace_id = "2000001"
-# Limit: the number of tokens allowed within a given period in a single Cloudflare location.
-# Period: the duration of the period, in seconds. Must be either 10 or 60.
-simple = {limit = 3, period = 10}
-
-[vars]
+namespace_id = "2000001" # an number identifier, unique to your account
+simple = {limit = 3, period = 10} # [limit, # of access per] [period, 10 or 60 (seconds)]
+#
+[build]
+command = "WORKER_ENV=prod npm run pre-deploy"
+cwd = "."
+watch_dir = "."
+#
+[env.prod.vars]
 DEBUG_MODE = true
 CFG_SITE_ORIGIN = "https://kes.im"
 CFG_SITE_HOSTNAME = "kes.im"

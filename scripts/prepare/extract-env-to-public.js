@@ -19,11 +19,11 @@ fs.readFile(wranglerTOMLFilePath, 'utf8', (err, data) => {
     const config = toml.parse(data);
 
     // Extract the vars section.
-    const vars = config.vars;
+    const vars = config.env[process.env.WORKER_ENV].vars;
 
     // Convert vars to a JS file content
     const jsContent = `export const ENV = ${JSON.stringify(vars, null, 0)};\n`;
-    
+
     // Create final content
     const comment = 'This file is auto-generated from the "wrangler.toml" vars.';
     const fileContent = `\n// ${comment}\n\n${jsContent}`;
@@ -34,7 +34,7 @@ fs.readFile(wranglerTOMLFilePath, 'utf8', (err, data) => {
         console.error('Error writing the env.js file:', err);
         return;
       }
-      
+
       console.log(`[SUCCESS] ${outputJSFileRelativePath} file generated from wrangler.toml vars.`);
     });
   } catch (err) {

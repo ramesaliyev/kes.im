@@ -7,7 +7,7 @@
     "ts-errcheck": "tsc --project tsconfig.errcheck.json",
     "gh-pre-commit": "npm run ts-errcheck",
     "pre-deploy": "npm run ts-errcheck && node scripts/prepare",
-    "deploy": "wrangler deploy",
+    "deploy": "wrangler deploy --env prod",
     "dev": "wrangler dev",
     "start": "wrangler dev",
     "test": "vitest",
