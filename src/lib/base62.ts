@@ -1,38 +1,87 @@
-const alphabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-const letterValue = alphabet.reduce((mem:any, letter, index) => (mem[letter] = index, mem), {})
+/**
+ * Base62 module
+ */
 
-export function decode(n:string) {
-  const length = n.length;
-  let i = 0;
+/**
+ * Alphabet used for encoding and decoding.
+ */
+const alphabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+const base = alphabet.length;
+
+/**
+ * Map of character to index.
+ */
+const charIndexMap = Object.fromEntries(alphabet.map((char, index) => [char, index]));
+
+/**
+ * Calculate the power of 62 with caching support.
+ * @param num 
+ * @returns 
+ */
+const pow62 = (function () {
+  const cache: Record<number, number> = {};
+
+  return function (num: number) {
+    if (cache[num] === undefined) {
+      cache[num] = Math.pow(base, num);
+    }
+    return cache[num];
+  };
+})();
+
+/**
+ * Decode a base62 string to a number.
+ * @param encoded Base62 string.
+ * @returns Number.
+ */
+function decode(encoded: string) {
   let result = 0;
 
-  while (i++ < length) {
-    result += letterValue[n[i-1]] * Math.pow(62, length - i);
+  for (let index = encoded.length - 1; index >= 0; index--) {
+    const coefficient = charIndexMap[encoded[index]];
+    const multiplier = pow62(encoded.length - index - 1);
+
+    result += coefficient * multiplier;
   }
 
   return result;
 }
 
-export function encode(n:number) {
+/**
+ * Encode a number to a base62 string.
+ * @param num 
+ * @returns string
+ */
+function encode(num:number) {
+  if (num === 0) {
+    return '0';
+  }
+
   let result = '';
 
-  while (n >= 62) {
-    result += alphabet[n % 62];
-    n = Math.floor(n / 62);
+  while (num > 0) {
+    result = alphabet[num % base] + result;
+    num = Math.floor(num / base);
   }
 
-  if (n !== 0) {
-    result += alphabet[n];
-  }
-
-  return result.split('').reverse().join('');
+  return result;
 }
 
-export function next(prev= '0') {
+/**
+ * Calculate the next base62 string.
+ * @param prev 
+ * @returns string
+ */
+function next(prev='0') {
   return encode(decode(prev) + 1);
 }
 
-export function random(length: number) {
+/**
+ * Generates a random base62 string of a given length.
+ * @param length 
+ * @returns 
+ */
+function random(length: number) {
   let result = '';
   for (let i = 0; i < length; i++) {
     result += alphabet[Math.floor(Math.random() * alphabet.length)];
@@ -40,6 +89,9 @@ export function random(length: number) {
   return result;
 }
 
+/**
+ * Base62 module
+ */
 export default {
   alphabet,
   decode,

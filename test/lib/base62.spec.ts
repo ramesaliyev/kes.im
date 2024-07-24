@@ -32,6 +32,10 @@ describe('lib/base62', () => {
    * Test Base62.encode method.
    */
   describe('.encode', () => {
+    it('should encode 0 correctly', async () => {
+      expect(Base62.encode(0)).toBe('0');
+    });
+
     it('should encode num < 62 correctly', async () => {
       const number = 10;
       const encoded = Base62.encode(number);
@@ -66,6 +70,10 @@ describe('lib/base62', () => {
    * Test Base62.decode method.
    */
   describe('.decode', () => {
+    it('should decode 0 correctly', async () => {
+      expect(Base62.decode('0')).toBe(0);
+    });
+
     it('should decode char < 10 correctly', async () => {
       const number = 10;
       const decoded = Base62.decode(Base62.alphabet[number]);
