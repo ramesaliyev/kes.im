@@ -23,33 +23,38 @@ bucket = "./public"
 # -- PRODUCTION --
 
 [env.prod]
-#
 name = "kesim"
-#
+
+# -- Routes
 routes = [
 	{pattern="kes.im", custom_domain=true},
 	{pattern="api.kes.im", custom_domain=true},
 ]
-#
+
+# -- KV Bindings
 kv_namespaces = [
   {binding="KV_LINKS", id="767fc2258dd94aa09ddcacdac19b1e23"}
 ]
-#
+
+# -- D1 Bindings
 d1_databases = [
   {binding="D1_LINKS", database_name="kesim", database_id="7356670a-5a76-414d-b8e0-92c30ed0f743" }
 ]
-#
+
+# -- Limiter Bindings
 [[env.prod.unsafe.bindings]]
 name = "API_RATE_LIMITER"
 type = "ratelimit"
 namespace_id = "2000001" # an number identifier, unique to your account
 simple = {limit = 3, period = 10} # [limit, # of access per] [period, 10 or 60 (seconds)]
-#
+
+# -- Custom builds
 [build]
 command = "WORKER_ENV=prod npm run pre-deploy"
 cwd = "."
 watch_dir = "."
-#
+
+# -- ENV vars
 [env.prod.vars]
 DEBUG_MODE = true
 CFG_SITE_ORIGIN = "https://kes.im"
@@ -67,3 +72,5 @@ CFG_REDIRECT_CACHE_AGE = 31536000 # a year
 CF_STATIC_ASSET_TTL = 172800 # 2 days
 CF_KV_CACHE_TTL = 86400 # a day
 CF_TURNSTILE_VERIFY_URL = "https://challenges.cloudflare.com/turnstile/v0/siteverify"
+
+####################################################################################################
