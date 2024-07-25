@@ -7,7 +7,7 @@
     "ts-errcheck": "tsc --noEmit",
 
     "// Githooks": "",
-    "gh-pre-commit": "npm run pre-deploy && npm run ts-errcheck && vitest run",
+    "gh-pre-commit": "RUN=0 WORKER_ENV=prod npm run pre-deploy && npm run ts-errcheck && vitest run",
     "set-githooks": "node scripts/githooks/_set",
 
     "// Deployment": "",
