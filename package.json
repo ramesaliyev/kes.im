@@ -11,8 +11,7 @@
     "set-githooks": "node scripts/githooks/_set",
 
     "// Deployment": "",
-    "pre-deploy-init": "node scripts/deploy-init",
-    "pre-deploy-prepare": "node scripts/deploy-prepare",
+    "pre-deploy": "node scripts/pre-deploy",
 
     "// Development": "",
     "dev": "wrangler dev",

@@ -28,7 +28,7 @@ const filesToCompile = [
   },
   {
     inputTSFileRelativePath: 'src/gen/build.ts',
-    outputJSFileRelativePath: 'public/js/modules/errors.js',
+    outputJSFileRelativePath: 'public/js/modules/build.js',
   },
 ];
 

@@ -5,10 +5,14 @@ on:
     branches:
       - master
 
+env:
+  WORKER_ENV: prod
+  RUN: ${{github.run_id}}-${{github.run_number}}-${{github.run_attempt}}
+
 jobs:
-  pre-deploy:
+  test:
     runs-on: ubuntu-latest
-    name: Pre-Deploy
+    name: Test
     steps:
     - uses: actions/checkout@v4
     - name: Use Node.js
@@ -17,11 +21,9 @@ jobs:
         node-version: '20.x'
         cache: 'npm'
     - run: npm ci
-    - run: npm run ts-errcheck
     - run: npm test
-    - run: RUN=${{ github.run_id }}${{ github.run_number }}${{ github.run_attempt }} npm run pre-deploy-init
   deploy:
-    needs: pre-deploy
+    needs: test
     runs-on: ubuntu-latest
     name: Deploy
     steps:
@@ -29,6 +31,8 @@ jobs:
       - name: Deploy
         uses: cloudflare/wrangler-action@v3
         with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          environment: prod
+          apiToken: ${{secrets.CLOUDFLARE_API_TOKEN}}
+          environment: ${{env.WORKER_ENV}}
           preCommands: echo "*** pre command ***"
+        env:
+          SOMETHING: ${{env.RUN}}

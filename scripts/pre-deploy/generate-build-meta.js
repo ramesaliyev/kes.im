@@ -15,9 +15,10 @@ try {
   // Collect build meta.
   const time = new Date().toISOString();
   const commitHash = execSync('git rev-parse HEAD').toString().trim();
+  const build = execSync('git rev-list --count HEAD').toString().trim();
   const workerEnv = process.env.WORKER_ENV;
   const version = packageJson.version;
-  const build = packageJson.build;
+  const run = process.env.RUN;
 
   const buildMeta = {
     time,
@@ -35,7 +36,7 @@ try {
 
   fs.writeFileSync(outputPath, content);
 
-  console.log(`[SUCCESS] build-meta.ts file is generated and saved to ${outputRelativePath}.`);
+  console.log(`[SUCCESS] build.ts file is generated and saved to ${outputRelativePath}.`);
 } catch (error) {
   console.error('[ERROR] Error during generate-build-meta:', error);
 }
