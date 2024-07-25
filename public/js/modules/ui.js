@@ -77,7 +77,7 @@ export default class AppUI {
       <li class="result-item result-error">${appErrorPayload.message}</li>
     `);
   }
-  
+
   clearErrors() {
     this.#DOM.resultList.querySelectorAll('.result-error')
       .forEach(el => this.#DOM.resultList.removeChild(el));
@@ -89,7 +89,7 @@ export default class AppUI {
   onCopyButtonClick(event, slug) {
     // Copy to clipboard.
     navigator.clipboard.writeText(`${this.#origin}/${slug}`);
-    
+
     const buttonSelector = '.copy-button';
     const activeClass = 'copied';
 
@@ -99,7 +99,7 @@ export default class AppUI {
         button.classList.remove(activeClass);
         button.innerText = 'Copy URL';
       });
-      
+
     // Mark the current button as copied.
     event.target.classList.add(activeClass);
     event.target.innerText = 'Copied';

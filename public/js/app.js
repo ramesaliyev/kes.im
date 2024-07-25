@@ -29,7 +29,7 @@ class App {
   }
 
   async #onShortenLinkRequest() {
-    // Clicking much? 
+    // Clicking much?
     if (this.#ui.isShorteningInProgress()) {
       return;
     }
@@ -137,7 +137,7 @@ class App {
   onTokenSuccess(token) {
     this.#token = token;
   }
-  
+
   onTokenExpired() {
     this.#token = null;
   }
