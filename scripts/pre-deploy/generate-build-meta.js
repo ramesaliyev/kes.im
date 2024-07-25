@@ -15,18 +15,18 @@ try {
   // Collect build meta.
   const time = new Date().toISOString();
   const commitHash = execSync('git rev-parse HEAD').toString().trim();
-  const build = execSync('git rev-list --count HEAD').toString().trim();
   const workerEnv = process.env.WORKER_ENV;
   const version = packageJson.version;
   const run = process.env.RUN;
+  const build = run.split('-')[1];
 
   const buildMeta = {
     time,
     commitHash,
     workerEnv,
     version,
-    build,
     run,
+    build,
   };
 
   // Write build meta to file.
