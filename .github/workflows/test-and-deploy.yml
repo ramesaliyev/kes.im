@@ -10,9 +10,9 @@ env:
   RUN: ${{github.run_id}}-${{github.run_number}}-${{github.run_attempt}}
 
 jobs:
-  test:
+  pre-deploy:
     runs-on: ubuntu-latest
-    name: Test
+    name: Pre Deploy
     steps:
     - uses: actions/checkout@v4
     - name: Use Node.js
@@ -21,9 +21,10 @@ jobs:
         node-version: '20.x'
         cache: 'npm'
     - run: npm ci
+    - run: npm run pre-deploy
     - run: npm test
   deploy:
-    needs: test
+    needs: pre-deploy
     runs-on: ubuntu-latest
     name: Deploy
     steps:

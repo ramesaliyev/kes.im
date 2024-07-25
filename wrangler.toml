@@ -18,6 +18,12 @@ mode = "smart"
 [site]
 bucket = "./public"
 
+# -- Custom builds
+[build]
+command = "npm run pre-deploy"
+cwd = "."
+watch_dir = "."
+
 ####################################################################################################
 
 # -- PRODUCTION --
@@ -47,12 +53,6 @@ name = "API_RATE_LIMITER"
 type = "ratelimit"
 namespace_id = "2000001" # an number identifier, unique to your account
 simple = {limit = 3, period = 10} # [limit, # of access per] [period, 10 or 60 (seconds)]
-
-# -- Custom builds
-[build]
-command = "WORKER_ENV=prod npm run pre-deploy"
-cwd = "."
-watch_dir = "."
 
 # -- ENV vars
 [env.prod.vars]
