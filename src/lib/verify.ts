@@ -1,4 +1,4 @@
-import banned from 'lib/banned';
+import banned from 'gen/banned';
 import Base62 from 'lib/base62';
 import {URL2} from 'lib/url';
 

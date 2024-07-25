@@ -75,11 +75,11 @@ try {
   const minifiedContent = minifyJS(content);
 
   // Combine with comment.
-  const comment = `This file is auto-generated from the files under "${listFilesRelativePath}"`; 
+  const comment = `This file is auto-generated from the files under "${listFilesRelativePath}"`;
   const fileContents = `\n// ${comment}\n\n${minifiedContent}`;
 
   // Write the file.
-  const outputRelativePath = 'src/lib/banned.ts';
+  const outputRelativePath = 'src/gen/banned.ts';
   writeFile(path.resolve(rootPath, outputRelativePath), fileContents);
 
   console.log(`[SUCCESS] banned.ts file is generated and saved to ${outputRelativePath}.`);

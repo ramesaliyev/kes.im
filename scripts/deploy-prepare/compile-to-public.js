@@ -26,6 +26,10 @@ const filesToCompile = [
     inputTSFileRelativePath: 'src/lib/errors.ts',
     outputJSFileRelativePath: 'public/js/modules/errors.js',
   },
+  {
+    inputTSFileRelativePath: 'src/gen/build.ts',
+    outputJSFileRelativePath: 'public/js/modules/errors.js',
+  },
 ];
 
 filesToCompile.forEach(({inputTSFileRelativePath, outputJSFileRelativePath}) => {
