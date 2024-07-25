@@ -89,7 +89,7 @@ export default class AppResponse {
    * Asset response.
    */
   asset(asset:Response, status?:number) {
-    return this.#respond(status || 200, asset.body, asset);
+    return this.#respond(status || asset.status || 200, asset.body, asset);
   }
 
   /**
