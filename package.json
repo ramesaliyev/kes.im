@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "set-githooks": "node scripts/set-githooks",
-    "ts-errcheck": "tsc --project tsconfig.errcheck.json",
+    "ts-errcheck": "tsc --noEmit",
     "gh-pre-commit": "npm run ts-errcheck && vitest run",
     "pre-deploy": "npm run ts-errcheck && node scripts/prepare",
     "deploy": "wrangler deploy --env prod",
