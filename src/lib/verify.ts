@@ -73,11 +73,16 @@ export function isURLValidAndAllowed(url:string, minLen:number, maxLen:number): 
   if (
     parsedURL.isHttpProtocol() &&
     pathSegs.length === 1 &&
-    firstPath.length > 40 &&
-    !firstPath.includes('-') &&
-    !firstPath.includes('_')
+    firstPath.length > 40
   ) {
-    return false;
+    // No dashes or underscores.
+    if (!firstPath.includes('-') && !firstPath.includes('_')) {
+      return false;
+    }
+    // Too long.
+    if (firstPath.length > 100) {
+      return false;
+    }
   }
 
   // Okay, you won this time.
