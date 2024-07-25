@@ -56,6 +56,7 @@ watch_dir = "."
 
 # -- ENV vars
 [env.prod.vars]
+ENV = "prod"
 DEBUG_MODE = true
 CFG_SITE_ORIGIN = "https://kes.im"
 CFG_SITE_HOSTNAME = "kes.im"
