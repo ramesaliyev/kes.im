@@ -1,14 +1,18 @@
-// Check required ENV variables.
-if (!process.env.WORKER_ENV) {
-  console.error('[ERROR]: Please provide WORKER_ENV environment variable.');
-  process.exit(1);
-}
+// Init
+console.log('[PRE-DEPLOY] Running pre-deploy script...');
+
+// Required envVars
+const envVars = ['WORKER_ENV', 'RUN'];
 
 // Check required ENV variables.
-if (!process.env.RUN) {
-  console.error('[ERROR]: Please provide RUN environment variable.');
-  process.exit(1);
-}
+envVars.forEach((envVar) => {
+  if (!process.env[envVar]) {
+    console.error(`[ERROR]: Please provide ${envVar} environment variable.`);
+    process.exit(1);
+  }
+
+  console.log(`[INFO]: ${envVar} = ${process.env[envVar]}`);
+});
 
 // Generate src/gen/banned.ts file.
 require('./generate-banned');
@@ -21,3 +25,6 @@ require('./compile-to-public');
 
 // Extract ENV variables from wrangler.toml and save them in public/js/modules/env.js
 require('./extract-env-to-public');
+
+// Done.
+console.log('[PRE-DEPLOY]  Pre-deploy script completed.');

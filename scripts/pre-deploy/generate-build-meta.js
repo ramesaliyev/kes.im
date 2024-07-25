@@ -26,6 +26,7 @@ try {
     workerEnv,
     version,
     build,
+    run,
   };
 
   // Write build meta to file.
