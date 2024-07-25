@@ -59,4 +59,4 @@ export const AppErrorPayloadsMap: Record<AppErrorCode, AppErrorPayload> = {
     message: 'Maximum request limit per 10 seconds is exceeded. Slow down.',
     status: 429
   },
-};
+} as const;

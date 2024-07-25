@@ -14,4 +14,4 @@ export default {
   HOSTNAMES,
   URL_KEYWORDS,
   SLUGS,
-};
+} as const;
