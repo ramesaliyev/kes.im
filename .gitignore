@@ -2,3 +2,4 @@
 .wrangler/
 node_modules/
 dist
+deploy-init.json

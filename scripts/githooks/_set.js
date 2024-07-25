@@ -25,6 +25,7 @@ function writeHookFile(hookName, command) {
 
 // Create hooks.
 writeHookFile('pre-commit', 'npm run gh-pre-commit');
+writeHookFile('pre-push', 'npm run gh-pre-push');
 
 // We're done.
 console.log('Git hooks has been set up successfully.');
