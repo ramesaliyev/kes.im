@@ -15,6 +15,8 @@ jobs:
     name: Pre Deploy
     steps:
     - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
     - name: Use Node.js
       uses: actions/setup-node@v4
       with:
@@ -39,6 +41,3 @@ jobs:
         with:
           apiToken: ${{secrets.CLOUDFLARE_API_TOKEN}}
           environment: ${{env.WORKER_ENV}}
-          preCommands: echo "*** pre command ***"
-        env:
-          SOMETHING: ${{env.RUN}}
