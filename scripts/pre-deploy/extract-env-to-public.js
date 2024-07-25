@@ -22,7 +22,7 @@ fs.readFile(wranglerTOMLFilePath, 'utf8', (err, data) => {
     const vars = config.env[process.env.WORKER_ENV].vars;
 
     // Convert vars to a JS file content
-    const jsContent = `export const ENV = ${JSON.stringify(vars, null, 0)};\n`;
+    const jsContent = `export const ENV = ${JSON.stringify(vars, null, 2)};\n`;
 
     // Create final content
     const comment = 'This file is auto-generated from the "wrangler.toml" vars.';

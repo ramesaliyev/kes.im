@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const UglifyJS = require('uglify-js');
 
 /**
  * Helpers
@@ -15,19 +14,6 @@ function readLines(filePath) {
 // Function to read a file.
 function readFile(filePath) {
   return fs.readFileSync(filePath, 'utf-8');
-}
-
-// Function to minify JavaScript content using UglifyJS
-function minifyJS(content) {
-  const result = UglifyJS.minify(content, {
-    output: {
-      comments: false
-    }
-  });
-  if (result.error) {
-    throw result.error;
-  }
-  return result.code;
 }
 
 // Function to write the minified content to a new file with a comment.
@@ -69,14 +55,11 @@ const content = contentMap.reduce((out, {name, placeholder}) => {
   return out.replace(placeholder, content);
 }, template);
 
-// Minify and write the JavaScript content
+// Write the JavaScript content
 try {
-  // Minify the content.
-  const minifiedContent = minifyJS(content);
-
   // Combine with comment.
   const comment = `This file is auto-generated from the files under "${listFilesRelativePath}"`;
-  const fileContents = `\n// ${comment}\n\n${minifiedContent}`;
+  const fileContents = `\n// ${comment}\n\n${content}`;
 
   // Write the file.
   const outputRelativePath = 'src/gen/banned.ts';

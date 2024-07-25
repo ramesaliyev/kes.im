@@ -10,7 +10,7 @@ async function compileTypeScript(sourceFilePath, outputFilePath, comment) {
     platform: 'browser',
     target: ['es6'],
     format: 'esm', // ES module format
-    minify: true, // Optional: Minify the output
+    minify: false, // Optional: Minify the output
     banner: { js: `\n// ${comment}\n` }, // Add the comment at the top of the output file
   });
 }
