@@ -68,8 +68,11 @@ export default class APIRoute extends AppRoute {
   async ensureSecure() {
     const {req, err, env} = this.app;
 
-    // Check if the request is coming from our site.
-    if (req.getHeader('Origin') !== env.CFG_SITE_ORIGIN) {
+    // Check if the request is coming from our site if not root.
+    if (
+      req.getPathname() != '/' &&
+      req.getHeader('Origin') !== env.CFG_SITE_ORIGIN
+    ) {
       throw err.code.BAD_REQ;
     }
 
