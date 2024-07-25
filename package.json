@@ -1,21 +1,20 @@
 {
   "name": "kes.im",
-  "version": "2.0.0-beta.1",
+  "version": "2.0.0-beta",
   "private": true,
   "scripts": {
     "// Compilation and Type Checking": "",
     "ts-errcheck": "tsc --noEmit",
 
     "// Githooks": "",
-    "gh-pre-commit": "RUN=0 WORKER_ENV=prod npm run pre-deploy && npm run ts-errcheck && vitest run",
+    "gh-pre-commit": "RUN=0-0-0 WORKER_ENV=prod npm run pre-deploy && npm run ts-errcheck && vitest run",
     "set-githooks": "node scripts/githooks/_set",
 
     "// Deployment": "",
     "pre-deploy": "node scripts/pre-deploy",
 
     "// Development": "",
-    "dev": "wrangler dev",
-    "start": "wrangler dev",
+    "dev": "RUN=0-0-0 WORKER_ENV=prod wrangler dev",
     "test": "vitest",
     "cf-typegen": "wrangler types"
   },

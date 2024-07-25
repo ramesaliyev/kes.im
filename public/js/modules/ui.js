@@ -1,4 +1,5 @@
 import {ENV} from './env.js';
+import BuildMeta from './build.js';
 
 /**
  * AppUI class.
@@ -14,6 +15,7 @@ export default class AppUI {
     cutButton: document.getElementById('cutButton'),
     urlInput: document.getElementById('urlInput'),
     slugInput: document.getElementById('slugInput'),
+    buildInfo: document.getElementById('buildInfo'),
   };
 
   constructor() {
@@ -29,6 +31,14 @@ export default class AppUI {
     const maxURLLen = ENV.CFG_MAX_URL_LENGTH;
     this.#DOM.urlInput.minLength = minURLLen;
     this.#DOM.urlInput.maxLength = maxURLLen;
+
+    // Set the build meta.
+    const runId = BuildMeta.run.split('-')[0];
+    const build = BuildMeta.build;
+    this.#DOM.buildInfo.innerHTML = `<a rel="nofollow" target="_blank" href="https://github.com/ramesaliyev/kes.im/actions/runs/${runId}">
+      v${BuildMeta.version}.${build}
+    </a>`;
+
   }
 
   onShortenLinkRequest(handlerFn) {

@@ -46,7 +46,6 @@ a:visited {
   text-decoration: none;
   border-bottom: 1px solid transparent;
   position: relative;
-  top: 1px;
 }
 
 a:active,
@@ -67,7 +66,7 @@ a:hover {
 
 input {
   background: transparent;
-  caret-color: #4779FF; 
+  caret-color: #4779FF;
 }
 
 input::placeholder {
@@ -291,19 +290,19 @@ body.in-progress .cut-button .loader {
   display: block;
 }
 
-.about {
+.about, .build-info {
   color: #ACB0B9;
   text-align: center;
   margin-bottom: 40px;
 }
 
-.about a {
+.about a, .build-info a {
   color: #ACB0B9;
   border: none;
   text-decoration: underline;
 }
 
-.about a:hover {
+.about a:hover, .build-info a:hover {
   color: #4779FF;
 }
 
