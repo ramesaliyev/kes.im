@@ -3,6 +3,7 @@ import AppRoute from 'app/route';
 
 export default class StaticRoute extends AppRoute {
   cacheable = true;
+
   constructor(app:App) {
     super(app);
 
