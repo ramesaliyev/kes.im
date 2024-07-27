@@ -23,24 +23,8 @@ jobs:
         cache: 'npm'
 
     # Run Pre-Deploy
-    - name: Install dependencies
-      run: npm ci
-    - name: Run pre-deploy
-      run: npm run pre-deploy
-
-    # Build the site
-    - name: Run site npm install
-      working-directory: site
-      run: npm ci
-    - name: Run site build
-      working-directory: site
-      run: npm run build
-
-    # Run TypeScript error checking and tests
-    - name: Run TypeScript error checking
-      run: npm run ts-errcheck
-    - name: Run tests
-      run: npm test
+    - name: Pre-Deploy
+      run: WORKER_ENV=${{env.WORKER_ENV}} node tools/pre-deploy
 
     # Deploy to Cloudflare
     - name: Deploy
@@ -48,3 +32,4 @@ jobs:
       with:
         apiToken: ${{secrets.CLOUDFLARE_API_TOKEN}}
         environment: ${{env.WORKER_ENV}}
+        workingDirectory: "packages/worker"

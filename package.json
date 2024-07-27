@@ -1,41 +1,25 @@
 {
   "name": "kes.im",
-  "version": "2.0.0-beta",
+  "version": "2.1.0-beta",
   "private": true,
+  "type": "module",
   "scripts": {
-    "// Compilation and Type Checking": "",
-    "ts-errcheck": "tsc --noEmit",
-
     "// Githooks": "",
-    "gh-pre-commit": "RUN=0-0-0 WORKER_ENV=prod npm run pre-deploy && npm run ts-errcheck && vitest run",
+    "gh-pre-commit": "node tools/pre-deploy",
     "set-githooks": "node scripts/githooks/_set",
 
     "// Deployment": "",
-    "pre-deploy": "node scripts/pre-deploy",
-    "manual-deploy": "RUN=0-0-0 WORKER_ENV=prod wrangler deploy --env prod",
+    "manual-deploy": "node tools/pre-deploy && wrangler deploy -c packages/worker/wrangler.toml --env $WORKER_ENV",
+    "manual-deploy-prod": "WORKER_ENV=prod npm run manual-deploy",
 
-    "// Development": "",
-    "dev": "RUN=0-0-0 WORKER_ENV=prod wrangler dev --port 3000",
+    "// Testing": "",
     "test": "vitest",
-    "cf-typegen": "wrangler types --env prod"
+    "test:coverage": "vitest run --coverage"
   },
   "devDependencies": {
-    "@cloudflare/vitest-pool-workers": "^0.4.5",
-    "@cloudflare/workers-types": "^4.20240718.0",
-    "esbuild": "^0.23.0",
+    "@vitest/coverage-v8": "^2.0.4",
+    "chalk": "^5.3.0",
     "toml": "^3.0.0",
-    "typescript": "^5.5.2",
-    "vite-tsconfig-paths": "^4.3.2",
-    "vitest": "1.5.0",
-    "wrangler": "^3.60.3"
-  },
-  "dependencies": {
-    "@cloudflare/kv-asset-handler": "^0.3.4"
-  },
-  "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "^4.19.0"
-  },
-  "overrides": {
-    "@types/node": "20.8.3"
+    "vitest": "^2.0.4"
   }
 }
