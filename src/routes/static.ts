@@ -13,19 +13,24 @@ export default class StaticRoute extends AppRoute {
   }
 
   async serve() {
-    const {kvam, req, log, res} = this.app;
+    const {kvam, req, log, res, env} = this.app;
 
     try {
       // Attempt to get the asset from KV.
       const asset = await kvam.getAssetFromKV(req.getEventReq());
 
-      // Serve the asset.
-      if (asset) {
-        return res.asset(asset);
+      // If asset does not exist, throw an error.
+      if (!asset) {
+        throw new Error('Asset not found. ' + req.getPathname());
       }
 
-      // If asset does not exist, throw an error.
-      throw new Error('Asset not found. ' + req.getPathname());
+      // If request is for a hashed asset, set cache control to max.
+      const isHashed = req.getEventReq().url.includes('.hashed.');
+      if (isHashed) {
+        asset.headers.set('Cache-Control', `public, immutable, max-age=${env.CFG_HASHED_STATIC_CACHE_AGE}`);
+      }
+
+      return res.asset(asset);
 
     // Error handling.
     } catch (e) {

@@ -34,6 +34,11 @@ export default defineConfig({
         '404.html',
         '500.html',
       ].map((file) => resolve(root, file)),
+      output: {
+        entryFileNames: `assets/[name].hashed.[hash].js`,
+        chunkFileNames: `assets/[name].hashed.[hash].js`,
+        assetFileNames: `assets/[name].hashed.[hash].[ext]`
+      }
     },
   },
 

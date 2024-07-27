@@ -45,11 +45,11 @@ export default abstract class AppRoute {
 
     // Cache if response is successful.
     if (status in [200, 301, 302]) {
-      const isCacheControlAgeSet = response.headers.has('Cache-Control');
+      const isCacheControlSet = response.headers.has('Cache-Control');
       const isCacheControlAgeModeOverride = this.cacheControlAgeMode === 'override';
 
       // Set cache headers if not already set or override mode.
-      if (!isCacheControlAgeSet || isCacheControlAgeModeOverride) {
+      if (!isCacheControlSet || isCacheControlAgeModeOverride) {
         const age = this.cacheControlAge || env.CFG_DEFAULT_CACHE_AGE;
         response.headers.set('Cache-Control', `max-age=${age}`);
       }

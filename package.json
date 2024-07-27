@@ -17,7 +17,7 @@
     "// Development": "",
     "dev": "RUN=0-0-0 WORKER_ENV=prod wrangler dev --port 3000",
     "test": "vitest",
-    "cf-typegen": "wrangler types"
+    "cf-typegen": "wrangler types --env prod"
   },
   "devDependencies": {
     "@cloudflare/vitest-pool-workers": "^0.4.5",
