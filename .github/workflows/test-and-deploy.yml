@@ -22,6 +22,10 @@ jobs:
         node-version: '20.x'
         cache: 'npm'
 
+    # Install Dependencies
+    - name: Install Dependencies
+      run: npm ci
+
     # Run Pre-Deploy
     - name: Pre-Deploy
       run: WORKER_ENV=${{env.WORKER_ENV}} node tools/pre-deploy
