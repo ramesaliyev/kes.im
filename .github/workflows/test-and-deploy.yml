@@ -22,6 +22,12 @@ jobs:
         node-version: '20.x'
         cache: 'npm'
 
+    # Run Pre-Deploy
+    - name: Install dependencies
+      run: npm ci
+    - name: Run pre-deploy
+      run: npm run pre-deploy
+
     # Build the site
     - name: Run site npm install
       working-directory: site
@@ -30,11 +36,7 @@ jobs:
       working-directory: site
       run: npm run build
 
-    # Build and test worker.
-    - name: Install dependencies
-      run: npm ci
-    - name: Run pre-deploy
-      run: npm run pre-deploy
+    # Run TypeScript error checking and tests
     - name: Run TypeScript error checking
       run: npm run ts-errcheck
     - name: Run tests
