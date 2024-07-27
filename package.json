@@ -15,7 +15,7 @@
     "manual-deploy": "RUN=0-0-0 WORKER_ENV=prod wrangler deploy --env prod",
 
     "// Development": "",
-    "dev": "RUN=0-0-0 WORKER_ENV=prod wrangler dev",
+    "dev": "RUN=0-0-0 WORKER_ENV=prod wrangler dev --port 3000",
     "test": "vitest",
     "cf-typegen": "wrangler types"
   },

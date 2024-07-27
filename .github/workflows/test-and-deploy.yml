@@ -28,6 +28,9 @@ jobs:
       run: npm run ts-errcheck
     - name: Run tests
       run: npm test
+    - name: Run site build
+      working-directory: site
+      run: npm run build
   deploy:
     needs: pre-deploy
     runs-on: ubuntu-latest

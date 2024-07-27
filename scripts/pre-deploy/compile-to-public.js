@@ -20,15 +20,15 @@ const rootPath = path.resolve(__dirname, '../../');
 const filesToCompile = [
   {
     inputTSFileRelativePath: 'src/lib/verify.ts',
-    outputJSFileRelativePath: 'public/js/modules/verify.js',
+    outputJSFileRelativePath: 'site/src/modules/verify.js',
   },
   {
     inputTSFileRelativePath: 'src/lib/errors.ts',
-    outputJSFileRelativePath: 'public/js/modules/errors.js',
+    outputJSFileRelativePath: 'site/src/modules/errors.js',
   },
   {
     inputTSFileRelativePath: 'src/gen/build.ts',
-    outputJSFileRelativePath: 'public/js/modules/build.js',
+    outputJSFileRelativePath: 'site/src/modules/build.js',
   },
 ];
 

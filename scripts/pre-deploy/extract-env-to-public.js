@@ -4,7 +4,7 @@ const toml = require('toml');
 
 const rootPath = path.resolve(__dirname, '../../');
 const wranglerTOMLFilePath = path.join(rootPath, 'wrangler.toml');
-const outputJSFileRelativePath = 'public/js/modules/env.js';
+const outputJSFileRelativePath = 'site/src/modules/env.js';
 const outputJSFilePath = path.join(rootPath, outputJSFileRelativePath);
 
 // Read the TOML file

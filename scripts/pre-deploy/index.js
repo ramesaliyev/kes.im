@@ -20,10 +20,10 @@ require('./generate-banned');
 // Generate src/gen/build.ts file.
 require('./generate-build-meta');
 
-// Compile some .ts files to .js and save them in the public/js/modules
+// Compile some .ts files to .js and save them in the site/src/modules
 require('./compile-to-public');
 
-// Extract ENV variables from wrangler.toml and save them in public/js/modules/env.js
+// Extract ENV variables from wrangler.toml and save them in site/src/modules/env.js
 require('./extract-env-to-public');
 
 // Done.

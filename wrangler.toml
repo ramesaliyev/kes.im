@@ -16,7 +16,7 @@ mode = "smart"
 
 # -- Static files
 [site]
-bucket = "./public"
+bucket = "./site/dist"
 
 # -- Custom builds
 [build]
