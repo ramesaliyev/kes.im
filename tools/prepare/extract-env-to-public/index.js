@@ -2,11 +2,15 @@ import fs from 'fs';
 import path from 'path';
 import toml from 'toml';
 
-import {rootPath, getEnv} from '../../utils.js';
+import {rootPath, getEnv, exec} from '../../utils.js';
 
-const wranglerTOMLFilePath = path.join(rootPath, 'packages/worker/wrangler.toml');
-const outputENVFileRelativePath = 'packages/site/.env';
-const outputENVFilePath = path.join(rootPath, outputENVFileRelativePath);
+const packagesPath = path.join(rootPath, 'packages');
+const workerPath = path.join(packagesPath, 'worker');
+const sitePath = path.join(packagesPath, 'site');
+
+const wranglerTOMLFilePath = path.join(workerPath, 'wrangler.toml');
+const outputENVFilePath = path.join(sitePath, '.env');
+const outputENVFileRelativePath = outputENVFilePath.replace(rootPath, '');
 
 export default function extractEnvToPublic() {
   let data;
@@ -29,7 +33,7 @@ export default function extractEnvToPublic() {
 
     // Convert vars to a JS file content
     const envContent = Object.entries(vars).map(([key, value]) => {
-      return `VITE_${key} = ${JSON.stringify(value)};`;
+      return `APP_${key} = ${JSON.stringify(value)}`;
     }).join('\n');
 
     // Create final content
@@ -43,6 +47,17 @@ export default function extractEnvToPublic() {
     } catch (err) {
       console.error('Error writing the env.js file:', err);
     }
+
+    /**
+     * Also copy worker-configuration.d.ts to packages/site
+     */
+    // First make sure the file exists.
+    exec(`npx wrangler types --env ${WORKER_ENV}`, workerPath, true);
+    // Then copy it.
+    const workerConfigDTSFilename = 'worker-configuration.d.ts';
+    const workerConfigDTS = path.join(workerPath, workerConfigDTSFilename);
+    const siteConfigDTS = path.join(sitePath, workerConfigDTSFilename);
+    fs.copyFileSync(workerConfigDTS, siteConfigDTS);
 
   } catch (err) {
     console.error('Error while parsing the wrangler.toml', err);

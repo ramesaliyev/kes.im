@@ -5,7 +5,6 @@ import {AppErrorPayload} from '@lib/errors';
  * AppUI class.
  */
 export default class AppUI {
-  env = import.meta.env;
   #origin: string;
 
   #shorteningInProgress = false;
@@ -20,21 +19,19 @@ export default class AppUI {
   };
 
   constructor() {
-    const {env} = this;
-
     // Set the origin.
-    this.#origin = env.APP_CFG_SITE_ORIGIN;;
+    this.#origin = env.CFG_SITE_ORIGIN;;
 
     // Set slug input placeholder and limits.
-    const minSlugLen = env.APP_CFG_MIN_SLUG_LENGTH;
-    const maxSlugLen = env.APP_CFG_MAX_SLUG_LENGTH;
+    const minSlugLen = env.CFG_MIN_SLUG_LENGTH;
+    const maxSlugLen = env.CFG_MAX_SLUG_LENGTH;
     this.#DOM.slugInput.placeholder = `(optional) your very special keyword, only a-z, A-Z, 0-9, and - or _ (can't start or end with _ or -), min ${minSlugLen} max ${maxSlugLen} characters`;;
     this.#DOM.slugInput.minLength = minSlugLen;
     this.#DOM.slugInput.maxLength = maxSlugLen;
 
     // Set URL input placeholder and limits.
-    const minURLLen = env.APP_CFG_MIN_URL_LENGTH;
-    const maxURLLen = env.APP_CFG_MAX_URL_LENGTH;
+    const minURLLen = env.CFG_MIN_URL_LENGTH;
+    const maxURLLen = env.CFG_MAX_URL_LENGTH;
     this.#DOM.urlInput.minLength = minURLLen;
     this.#DOM.urlInput.maxLength = maxURLLen;
 

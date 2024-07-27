@@ -52,10 +52,15 @@ export function red(message) {
 }
 
 // Exec helper.
-export function exec(cmd, cwd) {
+export function exec(cmd, cwd, silent = false) {
+  const stdio = silent ? 'pipe' : 'inherit';
+
   try {
-    console.log(`\n🏃 ${green(cmd)}\n`);
-    execSync(cmd, {cwd, stdio: 'inherit'});
+    if (!silent) {
+      console.log(`\n🏃 ${green(cmd)}\n`);
+    }
+
+    execSync(cmd, {cwd, stdio});
   } catch (error) {
     console.log(`\n🏃 ${red(cmd)}\n`);
     throw error;

@@ -1,9 +1,8 @@
 import {resolve} from 'path'
 import {loadTsConfig} from "load-tsconfig"
-import {defineConfig} from 'vite';
+import {defineConfig, loadEnv} from 'vite';
 import checker from 'vite-plugin-checker'
 import tsconfigPaths from 'vite-tsconfig-paths'
-import EnvironmentPlugin from 'vite-plugin-environment'
 
 const root = resolve(__dirname);
 
@@ -27,63 +26,72 @@ function generateResolveAlias() {
   return alias;
 }
 
-// vite.config
-export default defineConfig({
-  root: root,
-  publicDir: 'public',
+export default defineConfig(({command, mode}) => {
+  // Load env file based on `mode` in the current working directory.
+  // Set the third parameter to '' to load all env regardless of the `VITE_` prefix.
+  const rawEnv = loadEnv(mode, process.cwd(), 'APP_');
+  const env = Object.fromEntries(
+    Object.entries(rawEnv).map(([key, value]) => {
+      return [key.replace('APP_'), value];
+    })
+  );
 
-  server: {
-    port: 5000,
-    host: 'localhost',
-  },
 
-  preview: {
-    port: 5000,
-    host: 'localhost',
-  },
+  return {
+    root: root,
+    publicDir: 'public',
 
-  build: {
-    outDir: 'dist',
-    minify: true,
-    emptyOutDir: true,
-    reportCompressedSize: true,
-    commonjsOptions: {
-      transformMixedEsModules: true,
+    server: {
+      port: 5000,
+      host: 'localhost',
     },
-    rollupOptions: {
-      input: [
-        'index.html',
-        '404.html',
-        '500.html',
-      ].map((file) => resolve(root, file)),
-      external: [
-        'dist',
-      ],
-      output: {
-        entryFileNames: `assets/[name].hashed.[hash].js`,
-        chunkFileNames: `assets/[name].hashed.[hash].js`,
-        assetFileNames: `assets/[name].hashed.[hash].[ext]`
-      }
+
+    preview: {
+      port: 5000,
+      host: 'localhost',
     },
-  },
 
-  resolve: {
-    alias: generateResolveAlias(),
-  },
+    build: {
+      outDir: 'dist',
+      minify: true,
+      emptyOutDir: true,
+      reportCompressedSize: true,
+      commonjsOptions: {
+        transformMixedEsModules: true,
+      },
+      rollupOptions: {
+        input: [
+          'index.html',
+          '404.html',
+          '500.html',
+        ].map((file) => resolve(root, file)),
+        external: [
+          'dist',
+        ],
+        output: {
+          entryFileNames: `assets/[name].hashed.[hash].js`,
+          chunkFileNames: `assets/[name].hashed.[hash].js`,
+          assetFileNames: `assets/[name].hashed.[hash].[ext]`
+        }
+      },
+    },
 
-  plugins: [
-    EnvironmentPlugin('all', {
-      prefix: 'APP_'
-    }, {
-      defineOn: 'import.meta.env',
-    }),
-    tsconfigPaths(),
-    checker({
-      typescript: true,
-    }),
-  ],
-});
+    resolve: {
+      alias: generateResolveAlias(),
+    },
 
+    plugins: [
+      tsconfigPaths(),
+      checker({
+        typescript: true,
+      }),
+    ],
+
+    define: {
+      env,
+    },
+  }
+})
 
 // vite.config.js
 // import { defineConfig } from 'vite'

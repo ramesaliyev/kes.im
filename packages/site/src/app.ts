@@ -10,10 +10,9 @@ import {
   AppErrorPayloadsMap as AppErrorPayloads,
 } from '@lib/errors';
 
-import AppUI from './modules/ui';
+import AppUI from './ui';
 
 class App {
-  env = import.meta.env;
   #ui = new AppUI();
   #token:string|null = null;
 
@@ -30,8 +29,6 @@ class App {
   }
 
   async #onShortenLinkRequest() {
-    const {env} = this;
-
     // Clicking much?
     if (this.#ui.isShorteningInProgress()) {
       return;
@@ -56,14 +53,14 @@ class App {
     const slug = this.#ui.getSlugInputValue();
 
     // Validate the URL.
-    if (!isURLValidAndAllowed(url, env.APP_CFG_MIN_URL_LENGTH, env.APP_CFG_MAX_URL_LENGTH)) {
+    if (!isURLValidAndAllowed(url, env.CFG_MIN_URL_LENGTH, env.CFG_MAX_URL_LENGTH)) {
       this.#ui.showError(AppErrorPayloads[AppErrorCodes.BAD_URL]);
       this.#ui.unsetShorteningInProgress();
       return;
     }
 
     // Validate the slug.
-    if (slug && !isSlugValidAndAllowed(slug, env.APP_CFG_MIN_SLUG_LENGTH, env.APP_CFG_MAX_SLUG_LENGTH)) {
+    if (slug && !isSlugValidAndAllowed(slug, env.CFG_MIN_SLUG_LENGTH, env.CFG_MAX_SLUG_LENGTH)) {
       this.#ui.showError(AppErrorPayloads[AppErrorCodes.BAD_SLUG]);
       this.#ui.unsetShorteningInProgress();
       return;
@@ -85,10 +82,8 @@ class App {
   }
 
   async #shortenLink(url:string, slug:string, token:string) {
-    const {env} = this;
-
     // Craft fetch options.
-    const fetchEndpoint = `${env.APP_CFG_SITE_API_ORIGIN}/shorten`;
+    const fetchEndpoint = `${env.CFG_SITE_API_ORIGIN}/shorten`;
     const fetchOptions = {
       method: 'POST',
       headers: {
