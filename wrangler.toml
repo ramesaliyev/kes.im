@@ -18,12 +18,6 @@ mode = "smart"
 [site]
 bucket = "./site/dist"
 
-# -- Custom builds
-[build]
-command = "npm run pre-deploy"
-cwd = "."
-watch_dir = "."
-
 ####################################################################################################
 
 # -- PRODUCTION --
@@ -75,3 +69,10 @@ CF_KV_CACHE_TTL = 86400 # a day
 CF_TURNSTILE_VERIFY_URL = "https://challenges.cloudflare.com/turnstile/v0/siteverify"
 
 ####################################################################################################
+
+# Placeholder for local
+# -- Custom builds
+#[build]
+#command = "npm run pre-deploy"
+#cwd = "."
+#watch_dir = "."

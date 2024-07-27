@@ -10,9 +10,10 @@ env:
   RUN: ${{github.run_id}}-${{github.run_number}}-${{github.run_attempt}}
 
 jobs:
-  pre-deploy:
+  deploy:
     runs-on: ubuntu-latest
-    name: Pre Deploy
+    name: Test & Deploy Prod
+    environment: prod
     steps:
     - uses: actions/checkout@v4
     - name: Use Node.js
@@ -31,15 +32,8 @@ jobs:
     - name: Run site build
       working-directory: site
       run: npm run build
-  deploy:
-    needs: pre-deploy
-    runs-on: ubuntu-latest
-    environment: prod
-    name: Deploy
-    steps:
-      - uses: actions/checkout@v4
-      - name: Deploy
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{secrets.CLOUDFLARE_API_TOKEN}}
-          environment: ${{env.WORKER_ENV}}
+    - name: Deploy
+      uses: cloudflare/wrangler-action@v3
+      with:
+        apiToken: ${{secrets.CLOUDFLARE_API_TOKEN}}
+        environment: ${{env.WORKER_ENV}}
