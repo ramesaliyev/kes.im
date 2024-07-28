@@ -32,10 +32,9 @@ export default defineConfig(({command, mode}) => {
   const rawEnv = loadEnv(mode, process.cwd(), 'APP_');
   const env = Object.fromEntries(
     Object.entries(rawEnv).map(([key, value]) => {
-      return [key.replace('APP_'), value];
+      return [key.replace('APP_', ''), value];
     })
   );
-
 
   return {
     root: root,
