@@ -33,7 +33,7 @@ function generateResolveAlias() {
  * I just want to render some pug files for god's sake.
  */
 // If true, rendered pug files won't be cached, so they'll re-render on each vite compilation.
-const PUG_DEV = false;
+const PUG_DEV = true;
 // These fake HTML files are actually their corresponding Pug files.
 const inputHTMLNames = [
   'index.html',

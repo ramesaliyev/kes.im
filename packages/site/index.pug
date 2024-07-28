@@ -1,5 +1,8 @@
 extends pug/page
 
+block vars
+  - var mainClass = 'root';
+
 block title
   | Shorten your links | kes.im
 
@@ -41,18 +44,10 @@ block content
 
   // About
   .about
-    | kes.im, ad-free no-log url shortener
-    br
-    | developed by
-    a(target='_blank' href='https://rames.dev') rames
-    | , designed by
-    a(target='_blank' href='http://www.hellocihan.com/') cihan
-    br
-    | works on top of
-    a(rel='nofollow' target='_blank' href='https://workers.cloudflare.com/') cloudflare workers
-    br
-    | opensourced on
-    a(rel='nofollow' target='_blank' href='https://github.com/ramesaliyev/kes.im') github
+    | kes.im, ad-free no-log url shortener<br>
+    | developed by <a target='_blank' href='https://rames.dev'>rames</a>, designed by <a target='_blank' href='https://www.hellocihan.com'>cihan</a><br>
+    | works on top of <a rel='nofollow' target='_blank' href='https://workers.cloudflare.com/'>cloudflare workers</a><br>
+    | opensourced on <a rel='nofollow' target='_blank' href='https://github.com/ramesaliyev/kes.im'>github</a>
 
   // Donation
   .donation

@@ -36,6 +36,7 @@
   --light-copy-focus: #fff;
   --light-copied: #58D673;
   --light-subtext: #ACB0B9;
+  --light-build: #babec6;
 
   --dark-bg: #202224;
   --dark-color: #4779FF;
@@ -51,6 +52,7 @@
   --dark-copy-focus: #000;
   --dark-copied: #58D673;
   --dark-subtext: #ACB0B9;
+  --dark-build: #57585c;
 }
 
 .wrapper {
@@ -324,19 +326,34 @@ body.in-progress .cut-button .loader {
 }
 
 .about, .build-info {
-  color: light-dark(var(--light-subtext), var(--dark-subtext));
   text-align: center;
   margin-bottom: 40px;
 }
 
 .about a, .build-info a {
-  color: light-dark(var(--light-subtext), var(--dark-subtext));
   border: none;
-  text-decoration: underline;
 }
 
 .about a:hover, .build-info a:hover {
   color: light-dark(var(--light-color), var(--dark-color));
+  text-decoration: none;
+}
+
+.about, .about a {
+  color: light-dark(var(--light-subtext), var(--dark-subtext));
+}
+
+.about a {
+  text-decoration: underline;
+}
+
+.build-info {
+  font-size: 0.9rem;
+}
+
+.build-info a {
+  color: light-dark(var(--light-build), var(--dark-build));
+  text-decoration: none;
 }
 
 .donation {
