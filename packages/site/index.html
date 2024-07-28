@@ -31,10 +31,15 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
   </head>
-  <body>
+  <body class="lang-en">
     <div class="wrapper">
       <main class="root">
-        <img class="logo" src="/img/logo_en.svg" />
+        <picture>
+          <source srcset="/img/logo_en.svg" media="(prefers-color-scheme: light)"/>
+          <source srcset="/img/logo_en_dark.svg"  media="(prefers-color-scheme: dark)"/>
+          <img id="logo" class="logo" src="/img/logo_en.svg" />
+        </picture>
+
         <div class="link-input-wrapper">
           <input type="url" id="urlInput" placeholder="Shorten your link" tabindex="1" />
           <button id="cutButton" class="cut-button loading" tabindex="3">
@@ -49,7 +54,7 @@
         <div class="captcha">
           <div class="cf-turnstile"
             data-sitekey="0x4AAAAAAAfcjB2aIe7Uas6w"
-            data-theme="light"
+            data-theme="auto"
             data-callback="onTokenSuccess"
             data-expired-callback="onTokenExpired"
           ></div>

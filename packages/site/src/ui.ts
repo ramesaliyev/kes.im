@@ -11,6 +11,7 @@ export default class AppUI {
 
   #DOM = {
     body: document.body,
+    logo: document.getElementById('logo') as HTMLImageElement,
     resultList: document.getElementById('results') as HTMLUListElement,
     cutButton: document.getElementById('cutButton') as HTMLButtonElement,
     urlInput: document.getElementById('urlInput') as HTMLInputElement,
@@ -172,5 +173,20 @@ export default class AppUI {
   clearInputs() {
     this.#DOM.urlInput.value = '';
     this.#DOM.slugInput.value = '';
+  }
+
+  /**
+   * Language
+   */
+  setLanguage(lang: string) {
+    lang = lang.toLocaleLowerCase();
+    lang = lang === 'tr' ? 'tr' : 'en';
+
+    document.documentElement.lang = lang;
+    this.#DOM.body.classList.remove('lang-en', 'lang-tr');
+    this.#DOM.body.classList.add(`lang-${lang}`);
+    this.#DOM.logo.src = `/img/logo_${lang}.svg`;
+
+    console.log('Language set to:', lang);
   }
 }

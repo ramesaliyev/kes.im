@@ -117,6 +117,10 @@ class App {
     return data.slug;
   }
 
+  setLanguage(lang:string) {
+    this.#ui.setLanguage(lang);
+  }
+
   /**
    * Turnstile integration.
    */
