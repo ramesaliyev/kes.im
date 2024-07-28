@@ -16,6 +16,8 @@ CREATE TABLE IF NOT EXISTS links (
 INSERT INTO links
   (slug, url)
 VALUES
+  ('1881', 'https://en.wikipedia.org/wiki/Mustafa_Kemal_Atatürk'),
+  ('ataturk', 'https://www.google.com/search?q=atatürk'),
   ('rames', 'https://rames.dev'),
   ('ramesaliyev', 'https://ramesaliyev.com'),
   ('kesim', 'https://kes.im'),
@@ -24,6 +26,6 @@ VALUES
   ('cloudflare', 'https://www.cloudflare.com'),
   ('github', 'https://github.com'),
   ('chess', 'https://www.chess.com'),
-  ('chatgpt', 'https://chatgpt.com'), 
+  ('chatgpt', 'https://chatgpt.com'),
   ('youtube', 'https://www.youtube.com'),
   ('reddit', 'https://www.reddit.com');
