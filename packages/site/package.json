@@ -12,6 +12,7 @@
   },
   "devDependencies": {
     "load-tsconfig": "^0.2.5",
+    "pug": "^3.0.3",
     "typescript": "^5.2.2",
     "vite": "^5.3.4",
     "vite-plugin-checker": "^0.7.2",

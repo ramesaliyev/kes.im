@@ -1,0 +1,65 @@
+extends pug/page
+
+block title
+  | Shorten your links | kes.im
+
+block prepend scripts
+  script(src='https://challenges.cloudflare.com/turnstile/v0/api.js' async=true defer=true)
+  script(src='src/app.ts' type="module")
+
+block content
+  // Logo
+  picture
+    source(srcset='/img/logo_en.svg' media='(prefers-color-scheme: light)')
+    source(srcset='/img/logo_en_dark.svg' media='(prefers-color-scheme: dark)')
+    img#logo.logo(src='/img/logo_en.svg')
+
+  // Input
+  .link-input-wrapper
+    input#urlInput(type='url' placeholder='Shorten your link' tabindex='1')
+    button#cutButton.cut-button.loading(tabindex='3')
+      span Cut
+      .loader
+
+  // Tag input
+  .custom-tag-wrapper
+    strong kes.im/
+    input#slugInput(tabindex='2')
+
+  // Captcha
+  .captcha
+    .cf-turnstile(
+      data-sitekey='0x4AAAAAAAfcjB2aIe7Uas6w'
+      data-theme='auto'
+      data-callback='onTokenSuccess'
+      data-expired-callback='onTokenExpired'
+    )
+
+  // Results
+  .results-wrapper
+    ul#results.results-list
+
+  // About
+  .about
+    | kes.im, ad-free no-log url shortener
+    br
+    | developed by
+    a(target='_blank' href='https://rames.dev') rames
+    | , designed by
+    a(target='_blank' href='http://www.hellocihan.com/') cihan
+    br
+    | works on top of
+    a(rel='nofollow' target='_blank' href='https://workers.cloudflare.com/') cloudflare workers
+    br
+    | opensourced on
+    a(rel='nofollow' target='_blank' href='https://github.com/ramesaliyev/kes.im') github
+
+  // Donation
+  .donation
+    script(type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js')
+    script(type='text/javascript').
+      kofiwidget2.init('Buy me a Beer', '#4779ff', 'E1E210QHEN');kofiwidget2.draw();
+
+  // Build info
+  #buildInfo.build-info
+
