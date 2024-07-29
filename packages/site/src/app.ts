@@ -125,6 +125,10 @@ class App {
    * Turnstile integration.
    */
   #getToken() {
+    if (!env.CF_TURNSTILE_ENABLED) {
+      return 'turnstile-disabled';
+    }
+
     if (turnstile.isExpired()) {
       this.#resetToken();
       return null;
@@ -134,6 +138,10 @@ class App {
   }
 
   #resetToken() {
+    if (!env.CF_TURNSTILE_ENABLED) {
+      return;
+    }
+
     this.#token = null;
     turnstile.reset();
   }

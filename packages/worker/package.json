@@ -2,7 +2,8 @@
   "type": "module",
   "scripts": {
     "// Development": "",
-    "dev": "wrangler dev --port 3000",
+    "dev": "wrangler dev --env local --port 3000 --local-protocol=https",
+    "dev:remote": "wrangler dev --env local --port 3000 --local-protocol=https --remote",
 
     "// Testing": "",
     "test": "vitest",

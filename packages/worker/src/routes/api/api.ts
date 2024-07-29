@@ -91,8 +91,10 @@ export default class APIRoute extends AppRoute {
       }
 
       // Validate the Turnstile token.
-      if (!await this.validateTurnstileToken(body.token)) {
-        throw err.code.BAD_CAPTCHA;
+      if (env.CF_TURNSTILE_ENABLED) {
+        if (!await this.validateTurnstileToken(body.token)) {
+          throw err.code.BAD_CAPTCHA;
+        }
       }
     }
   }

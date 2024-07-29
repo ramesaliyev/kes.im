@@ -4,6 +4,7 @@ import {loadTsConfig} from "load-tsconfig"
 import {defineConfig, loadEnv} from 'vite';
 import checker from 'vite-plugin-checker'
 import tsconfigPaths from 'vite-tsconfig-paths'
+import mkcert from 'vite-plugin-mkcert'
 import pug from 'pug';
 
 const root = resolve(__dirname);
@@ -104,12 +105,14 @@ export default defineConfig(({command, mode}) => {
 
     server: {
       port: 5000,
-      host: 'localhost',
+      host: 'local.kes.im',
+      https: true,
     },
 
     preview: {
       port: 5000,
-      host: 'localhost',
+      host: 'local.kes.im',
+      https: true,
     },
 
     build: {
@@ -138,6 +141,7 @@ export default defineConfig(({command, mode}) => {
     },
 
     plugins: [
+      mkcert(),
       tsconfigPaths(),
       checker({
         typescript: true,

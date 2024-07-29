@@ -5,7 +5,7 @@ import {AppErrorPayload} from '@lib/errors';
  * AppUI class.
  */
 export default class AppUI {
-  #origin: string;
+  #redirOrigin: string;
 
   #shorteningInProgress = false;
 
@@ -21,7 +21,7 @@ export default class AppUI {
 
   constructor() {
     // Set the origin.
-    this.#origin = env.CFG_SITE_ORIGIN;;
+    this.#redirOrigin = env.CFG_REDIR_ORIGIN;
 
     // Set slug input placeholder and limits.
     const minSlugLen = env.CFG_MIN_SLUG_LENGTH;
@@ -102,7 +102,7 @@ export default class AppUI {
    */
   onCopyButtonClick(event: MouseEvent, slug: string) {
     // Copy to clipboard.
-    navigator.clipboard.writeText(`${this.#origin}/${slug}`);
+    navigator.clipboard.writeText(`${this.#redirOrigin}/${slug}`);
 
     const buttonSelector = '.copy-button';
     const activeClass = 'copied';
@@ -137,8 +137,8 @@ export default class AppUI {
    */
   insertResultItem(url: string, slug: string) {
     const maxHrefTextLen = 40;
-    const slugHref = `${this.#origin}/${slug}`;
-    const slugText = `${this.#origin}/${this.shortenString(slug, maxHrefTextLen)}`;
+    const slugHref = `${this.#redirOrigin}/${slug}`;
+    const slugText = `${this.#redirOrigin}/${this.shortenString(slug, maxHrefTextLen)}`;
     const urlText = this.shortenString(url, maxHrefTextLen);
 
     this.#DOM.resultList.insertAdjacentHTML('afterbegin', `

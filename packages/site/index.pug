@@ -7,7 +7,8 @@ block title
   | Shorten your links | kes.im
 
 block prepend scripts
-  script(src='https://challenges.cloudflare.com/turnstile/v0/api.js' async=true defer=true)
+  if env.CF_TURNSTILE_ENABLED
+    script(src='https://challenges.cloudflare.com/turnstile/v0/api.js' async=true defer=true)
   script(src='src/app.ts' type="module")
 
 block content
