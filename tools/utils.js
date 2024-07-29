@@ -23,12 +23,22 @@ export function loadPackageJson() {
 }
 
 // Export env vars with defaults.
-export function getEnv() {
-  return {
-    WORKER_ENV: process.env.WORKER_ENV || 'prod',
-    RUN: process.env.RUN || '0-0-0',
-  };
-}
+export const getEnv = (() => {
+  const vars = ['WORKER_ENV', 'RUN'];
+
+  const env = Object.fromEntries(
+    vars.map(name => {
+      const value = process.env[name];
+      if (value === undefined) {
+        console.error(`${name} is not set.`);
+        process.exit(1);
+      }
+      return [name, value];
+    })
+  );
+
+  return () => Object.assign({}, env);
+})();
 
 // Chalk helpers.
 export function logYellow(message) {
