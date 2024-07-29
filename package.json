@@ -5,11 +5,11 @@
   "type": "module",
   "scripts": {
     "// Githooks": "",
-    "gh:pre-commit": "WORKER_ENV=local RUN=0-0-0 node tools/pre-deploy",
+    "gh:pre-commit": "WORKER_ENV=local TEST=true node tools/pre-deploy",
     "set:githooks": "node tools/githooks/_set",
 
     "// Deployment": "",
-    "manual-deploy": "RUN=0-0-0 node tools/pre-deploy && wrangler deploy -c packages/worker/wrangler.toml --env $WORKER_ENV",
+    "manual-deploy": "node tools/pre-deploy && wrangler deploy -c packages/worker/wrangler.toml --env $WORKER_ENV",
     "manual-deploy:prod": "WORKER_ENV=prod npm run manual-deploy",
 
     "// Testing": "",

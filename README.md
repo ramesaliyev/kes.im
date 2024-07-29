@@ -87,6 +87,8 @@ After running it navigate to [local.kes.im:5000](https://local.kes.im:5000) to t
 
 Everything has to be working now. Since ssl certificates created locally, some browsers may complain or have trouble about this. Other than that, there shouldn't be any issue, if there is, open an issue.
 
+Notice that if you change anything that prepare tool forwards to packages, such as adding new env vars to wrangler.toml or adding new banned keywords to assets/banneds etc, you need to re-run it from root such as `WORKER_ENV=local node tools/prepare`.
+
 ## Deployment
 
 #### 0. Configure [wrangler.toml](./packages/worker/wrangler.toml)

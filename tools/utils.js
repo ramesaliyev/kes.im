@@ -24,18 +24,28 @@ export function loadPackageJson() {
 
 // Export env vars with defaults.
 export const getEnv = (() => {
-  const vars = ['WORKER_ENV', 'RUN'];
+  const vars = [
+    ['WORKER_ENV'],
+    ['RUN', '0-0-0'],
+    ['TEST', false],
+  ];
 
   const env = Object.fromEntries(
-    vars.map(name => {
-      const value = process.env[name];
+    vars.map(([name, def]) => {
+      const value = process.env[name] || def;
+
       if (value === undefined) {
         console.error(`${name} is not set.`);
         process.exit(1);
       }
+
       return [name, value];
     })
   );
+
+  env.TEST = env.TEST === 'true';
+  env.DO_INSTALL = !env.TEST;
+  env.DO_BUILD = !env.TEST;
 
   return () => Object.assign({}, env);
 })();
