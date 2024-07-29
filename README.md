@@ -125,8 +125,6 @@ Project also have a [GitHub workflow](./.github/workflows/test-and-deploy.yml) t
 
 Only additional thing this step requires is your `CLOUDFLARE_API_TOKEN` to be defined as [repository or env secrets in your GitHub repository](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions). So make sure to get a [API token from Cloudflare](https://developers.cloudflare.com/fundamentals/api/get-started/create-token/) and add it as a secret to your repository.
 
-
 # Contributors [𐃉](https://github.com/ramesaliyev/kes.im/graphs/contributors)
 
-Contributions are always welcome.
 - [Cihat İslam Dede](https://github.com/cihatislamdede)
