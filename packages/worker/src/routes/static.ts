@@ -8,8 +8,7 @@ export default class StaticRoute extends AppRoute {
     super(app);
 
     // Set cache control age.
-    this.cacheControlAge = app.env.CFG_DEFAULT_STATIC_CACHE_AGE;
-    this.cacheControlAgeMode = 'default';
+    this.defaultCacheControl = `max-age=${app.env.CFG_DEFAULT_STATIC_CACHE_AGE}`;
   }
 
   async serve() {
@@ -27,7 +26,10 @@ export default class StaticRoute extends AppRoute {
       // If request is for a hashed asset, set cache control to max.
       const isHashed = req.getEventReq().url.includes('.hashed.');
       if (isHashed) {
-        asset.headers.set('Cache-Control', `public, immutable, max-age=${env.CFG_HASHED_STATIC_CACHE_AGE}`);
+        asset.headers.set(
+          'Cache-Control',
+          `public, immutable, max-age=${env.CFG_HASHED_STATIC_CACHE_AGE}`
+        );
       }
 
       return res.asset(asset);

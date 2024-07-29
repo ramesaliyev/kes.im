@@ -1,10 +1,8 @@
-# ✂️ [kes.im](https://kes.im) URL Shortener
-
-[![Kes.im Homepage](./assets/images/screenshot.png)](https://kes.im)
-
-[![Github Actions Status](https://github.com/ramesaliyev/kes.im/actions/workflows/test-and-deploy.yml/badge.svg)](https://github.com/ramesaliyev/kes.im/actions/workflows/test-and-deploy.yml)
+# [kes.im](https://kes.im) ✄ URL Shortener [![Github Actions Status](https://github.com/ramesaliyev/kes.im/actions/workflows/test-and-deploy.yml/badge.svg)](https://github.com/ramesaliyev/kes.im/actions/workflows/test-and-deploy.yml)
 
 [kes.im](https://kes.im) is an ad-less no-log URL shortener. Works on [Cloudflare Workers](https://workers.cloudflare.com/). Developed with pure front-end and workers TS code. Uses [D1](https://www.cloudflare.com/developer-platform/d1/) as database (currently migrating from KV on the fly).
+
+[![Kes.im Homepage](./assets/images/screenshot-rocks.png)](https://kes.im)
 
 # Architecture Overview
 

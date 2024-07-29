@@ -118,7 +118,7 @@ export default class AppModel {
 
     // If KV has the URL, first remove it.
     // Then check if we should insert to D1.
-    this.#db.kvLinksDelete(slug);
+    await this.#db.kvLinksDelete(slug);
 
     // Check if D1 has URL with another slug.
     // If it does, we should not insert to D1 and return null.

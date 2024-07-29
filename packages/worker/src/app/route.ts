@@ -3,8 +3,7 @@ import App from 'app/app';
 export default abstract class AppRoute {
   app: App;
   cacheable = false;
-  cacheControlAge: number | null = null;
-  cacheControlAgeMode: 'default' | 'override' = 'default';
+  defaultCacheControl: string = '';
 
   constructor(app:App) {
     this.app = app;
@@ -29,7 +28,7 @@ export default abstract class AppRoute {
     // Otherwise, try to serve from cache.
     // If not found, serve and cache.
 
-    const {req, env, ctx} = this.app;
+    const {req, ctx} = this.app;
     const cache = (caches as any).default as Cache;
     const eventReq = req.getEventReq();
 
@@ -45,13 +44,9 @@ export default abstract class AppRoute {
 
     // Cache if response is successful.
     if (status in [200, 301, 302]) {
-      const isCacheControlSet = response.headers.has('Cache-Control');
-      const isCacheControlAgeModeOverride = this.cacheControlAgeMode === 'override';
-
-      // Set cache headers if not already set or override mode.
-      if (!isCacheControlSet || isCacheControlAgeModeOverride) {
-        const age = this.cacheControlAge || env.CFG_DEFAULT_CACHE_AGE;
-        response.headers.set('Cache-Control', `max-age=${age}`);
+      // Use default cache control if not set.
+      if (!response.headers.has('Cache-Control')) {
+        response.headers.set('Cache-Control', this.defaultCacheControl);
       }
 
       // Keep worker running until the cache is updated.

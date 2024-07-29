@@ -5,16 +5,8 @@ import StaticRoute from 'routes/static';
 export default class RedirectRoute extends AppRoute {
   cacheable = true;
 
-  constructor(app:App) {
-    super(app);
-
-    // Set cache control age.
-    this.cacheControlAge = app.env.CFG_REDIRECT_CACHE_AGE;
-    this.cacheControlAgeMode = 'override';
-  }
-
   async serve() {
-    const {req, res, model} = this.app;
+    const {req, res, env, model} = this.app;
 
     const slug = req.getSlug() as string;
     const url = await model.fetchUrlBySlug(slug);
@@ -24,7 +16,7 @@ export default class RedirectRoute extends AppRoute {
       return res.redirect(url, {
         status: 301,
         headers: {
-          'Cache-Control': `max-age=${this.cacheControlAge}`,
+          'Cache-Control': `public, immutable, max-age=${env.CFG_REDIRECT_CACHE_AGE}`,
           'X-Robots-Tag': 'noindex',
         },
       });
