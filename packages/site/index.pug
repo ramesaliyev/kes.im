@@ -31,12 +31,13 @@ block content
 
   // Captcha
   .captcha
-    .cf-turnstile(
-      data-sitekey='0x4AAAAAAAfcjB2aIe7Uas6w'
-      data-theme='auto'
-      data-callback='onTokenSuccess'
-      data-expired-callback='onTokenExpired'
-    )
+    if env.CF_TURNSTILE_ENABLED
+      .cf-turnstile(
+        data-sitekey='0x4AAAAAAAfcjB2aIe7Uas6w'
+        data-theme='auto'
+        data-callback='onTokenSuccess'
+        data-expired-callback='onTokenExpired'
+      )
 
   // Results
   .results-wrapper

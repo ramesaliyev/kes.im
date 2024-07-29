@@ -47,23 +47,26 @@ inputHTMLNames.forEach(filename => {
 // Cache compiled pug files.
 const getCompiledPug = (() => {
   const cache = {};
-  return (filename) => {
+  return (filename, env) => {
     if (PUG_DEV || !cache[filename]) {
       const pugFilename = filename.replace('.html', '.pug');
       const content = fs.readFileSync(pugFilename, 'utf-8');
-      cache[filename] = pug.render(content, {filename: pugFilename});
+      cache[filename] = pug.render(content, {
+        filename: pugFilename,
+        env,
+      });
     }
 
     return cache[filename];
   };
 })();
 // Compile plugin
-const compilePug = () => ({
+const compilePug = (env) => ({
   name: 'transform-html',
   transformIndexHtml: {
     order: 'pre',
     handler(content, {path, filename}) {
-      return getCompiledPug(filename);
+      return getCompiledPug(filename, env);
     }
   }
 });
@@ -71,13 +74,29 @@ const compilePug = () => ({
 export default defineConfig(({command, mode}) => {
   /**
    * Define environment variables.
+   * Parse appropriately for boolean and number values.
    */
   const rawEnv = loadEnv(mode, process.cwd(), 'APP_');
   const env = Object.fromEntries(
     Object.entries(rawEnv).map(([key, value]) => {
+      switch (value) {
+        case 'true':
+          value = true;
+          break;
+        case 'false':
+          value = false;
+          break;
+        default:
+          if (!isNaN(value)) {
+            value = Number(value);
+          }
+      }
       return [key.replace('APP_', ''), value];
     })
   );
+
+  console.log(env)
+
 
   return {
     root: root,
@@ -123,7 +142,7 @@ export default defineConfig(({command, mode}) => {
       checker({
         typescript: true,
       }),
-      compilePug(),
+      compilePug(env),
     ],
 
     define: {
