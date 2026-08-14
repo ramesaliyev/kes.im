@@ -12,6 +12,9 @@ import {
 
 import AppUI from './ui';
 
+// API responds either with the saved slug, or with an error payload.
+type ShortenLinkResponse = Partial<AppErrorPayload> & {slug:string};
+
 class App {
   #ui = new AppUI();
   #token:string|null = null;
@@ -97,7 +100,7 @@ class App {
     const response = await fetch(fetchEndpoint, fetchOptions);
 
     // Parse the response.
-    const data = await response.json();
+    const data = await response.json() as ShortenLinkResponse;
 
     // Handle errors.
     if (response.status !== 200) {
@@ -106,7 +109,7 @@ class App {
 
       // If there is a message in the response, use it.
       if (data && data.message) {
-        appErrorPayload = data;
+        appErrorPayload = data as AppErrorPayload;
       }
 
       // Throw the error.
